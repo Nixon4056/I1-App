@@ -14,5 +14,17 @@ export default {
 </script>
 
 <style scoped>
-
+header{
+  left: 0;
+  padding: 1rem 0;
+  font-weight: 300;
+}
+section{
+  padding: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 1px black solid;
+  height: auto;
+}
 </style>

@@ -1,5 +1,7 @@
 <template>
-  <section></section>
+  <div>
+    Task-Details
+  </div>
 </template>
 
 <script>

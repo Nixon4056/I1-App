@@ -6,41 +6,54 @@ import TheSerwice from '../views/TheSerwice.vue'
 import TheIt from '../views/TheIt.vue'
 import TheDocs from '../views/TheDocs.vue'
 
+//import TaskItem from '../components/tasks/TaskItem.vue'
+import TaskDetails from '../components/tasks/TaskDetails.vue'
+
 const routes = [
-  {
-    path: '/',
-    component: TheDashboard
-  },
+  { path: '/', redirect: '/dashboard'},
+  { path: '/:notFound(.*)', redirect: '/dashboard' },
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: TheDashboard
+    component: TheDashboard,
+    children: [
+      {
+        path: 'printers',
+        name: 'printers',
+        component: ThePrinters,
+        props: true,
+        children: [
+          { path: 'task/:id', name: 'task', component: TaskDetails }
+        ]
+      },
+      {
+        path: 'serwis',
+        name: 'serwis',
+        component: TheSerwice,
+      },
+      {
+        path: 'it',
+        name: 'it',
+        component: TheIt
+      },
+      {
+        path: 'docs',
+        name: 'docs',
+        component: TheDocs
+      },
+    ]
   },
-  {
-    path: '/printers',
-    name: 'printers',
-    component: ThePrinters
-  },
-  {
-    path: '/serwis',
-    name: 'serwis',
-    component: TheSerwice
-  },
-  {
-    path: '/it',
-    name: 'it',
-    component: TheIt
-  },
-  {
-    path: '/docs',
-    name: 'docs',
-    component: TheDocs
-  },
+  /* {
+    path: '/dashboard/:kanban/task',
+    name: 'taskDetails',
+    component: TaskDetails
+  }, */
   {
     path: '/auth',
     name: 'auth',
     component: TheAuth
   },
+  
 ]
 
 const router = createRouter({

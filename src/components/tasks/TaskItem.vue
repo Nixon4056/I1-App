@@ -1,5 +1,7 @@
 <template>
-  <section></section>
+  <div>
+    task
+  </div>
 </template>
 
 <script>
