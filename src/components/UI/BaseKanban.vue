@@ -16,7 +16,7 @@ export default {
 <style scoped>
 header{
   left: 0;
-  padding: 1rem 0;
+  padding: 1rem;
   font-weight: 300;
 }
 section{
