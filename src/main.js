@@ -3,7 +3,23 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-createApp(App)
-  .use(router)
-  .use(store)
-  .mount('#app')
+//COMPONENTS
+import BaseKanban from './components/UI/BaseKanban.vue'
+import BaseColumn from './components/UI/BaseColumn.vue';
+
+//SIMPLE COMPONENTS
+import LoginBtn from './components/layout/TheLoginBtn.vue'
+import UserIcon from './components/svg/UserIcon.vue'
+import navIcons from './components/svg/NavIcons.vue'
+import TheLogo from './components/svg/TheLogo.vue'
+
+const app = createApp(App);
+app.component('base-kanban', BaseKanban)
+app.component('base-column', BaseColumn)
+app.component('login-btn', LoginBtn)
+app.component('user-icon', UserIcon)
+app.component('nav-icons', navIcons)
+app.component('the-logo', TheLogo)
+app.use(store)
+app.use(router)
+app.mount('#app')

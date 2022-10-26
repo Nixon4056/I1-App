@@ -24,7 +24,6 @@ section{
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  border: 1px black solid;
   height: auto;
 }
 </style>
