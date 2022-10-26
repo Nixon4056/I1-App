@@ -5,6 +5,7 @@ import store from './store'
 
 //COMPONENTS
 import BaseKanban from './components/UI/BaseKanban.vue'
+import BaseColumn from './components/UI/BaseColumn.vue';
 
 //SIMPLE COMPONENTS
 import LoginBtn from './components/layout/TheLoginBtn.vue'
@@ -14,6 +15,7 @@ import TheLogo from './components/svg/TheLogo.vue'
 
 const app = createApp(App);
 app.component('base-kanban', BaseKanban)
+app.component('base-column', BaseColumn)
 app.component('login-btn', LoginBtn)
 app.component('user-icon', UserIcon)
 app.component('nav-icons', navIcons)

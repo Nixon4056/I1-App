@@ -5,10 +5,10 @@
         <router-link to="/dashboard">Informatyk1 Dashboard</router-link> / Printers
       </template>
       <template #kanban>
-        <h1>1</h1>
-        <h1>1</h1>
-        <h1>1</h1>
-        <h1>1</h1>
+        <base-column></base-column>
+        <base-column></base-column>
+        <base-column></base-column>
+        <base-column></base-column>
       </template>
     </base-kanban>
     <router-view/>
@@ -17,6 +17,8 @@
 
 <script>
 export default {
+  components:{
+  }
 }
 </script>
 

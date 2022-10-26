@@ -16,7 +16,7 @@ export default {};
 
 <style scoped>
 header {
- position: absolute;
+ position: fixed;
  top: 0;
  right: 0;
  display: flex;
@@ -25,15 +25,19 @@ header {
  padding: 0.6rem 2.5rem;
  background-color: rgba(255, 255, 255, 0.3);
  border-bottom-left-radius: 35px;
+ z-index: 2;
 }
 section {
  position: absolute;
  top: 0;
  width: 100%;
  padding-left: 6rem;
+ z-index: 1;
+ padding-top: 50px;
+ font-size: 0.9rem;
 }
 nav {
- position: absolute;
+ position: fixed;
  left: 0;
  top: 0;
  height: 100vh;
@@ -43,5 +47,6 @@ nav {
  flex-direction: column;
  padding: 2rem 0.5rem;
  background-color: rgba(255, 255, 255, 0.4);
+ z-index: 2;
 }
 </style>

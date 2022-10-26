@@ -9,10 +9,12 @@
  padding: 0;
  box-sizing: border-box;
 }
+a{
+  text-decoration: none;
+  color: inherit;
+}
 #app {
  font-family: "Poppins", sans-serif;
- -webkit-font-smoothing: antialiased;
- -moz-osx-font-smoothing: grayscale;
  color: white;
  height: 100vh;
  width: 100%;
