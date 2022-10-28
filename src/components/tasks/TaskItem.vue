@@ -43,8 +43,9 @@
       </div>
       <div class="date">
         <h3></h3>
-        <div class="dateTimer">
+        <div class="addTime">
           <font-awesome-icon icon="fa-regular fa-clock" />
+          <h2>+</h2>
         </div>
       </div>
     </header>
@@ -68,7 +69,33 @@
 
 <script>
 export default {
-  props: ['company', 'description', 'employee', 'id', 'prepared'],
+  props: {
+    company: {
+        type: String,
+        default: 'error',
+        require: true,
+    },
+    description: {
+        type: String,
+        default: 'error',
+        require: true,
+    },
+    employee: {
+        type: String,
+        default: 'error',
+        require: true,
+    },
+    id: {
+        type: String,
+        default: 'error',
+        require: true,
+    },
+    prepared: {
+        type: Boolean,
+        default: false,
+        require: true,
+    },
+  },
   computed:{
     taskDetailsLink(){
       return this.$route.path + '/task/' + this.id; //Task Details with ID
@@ -143,12 +170,24 @@ header {
   align-items: center;
   justify-content: space-between;
 }
+.addTime{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f3f3f3;
+  padding: 2px 7px;
+  border-radius: 5px;
+  transition: 0.3s all;
+}
+.addTime:hover{
+  background-color: #d9d9d9;
+}
 .dateTimer {
   background-color: #d9d9d9;
   padding: 2px 7px;
   border-radius: 5px;
 }
-.dateTimer svg{
+.dateTimer svg, .addTime svg{
   font-size: .7rem;
 }
 .date h2 {

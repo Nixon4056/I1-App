@@ -8,7 +8,7 @@
       <slot></slot>
     </div>
     <div class="adder">
-      <btn-add></btn-add>
+      <slot name="btn"></slot>
     </div>
   </div>
 </template>

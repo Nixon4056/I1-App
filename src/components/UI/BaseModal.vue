@@ -21,7 +21,7 @@ export default {};
 <style scoped>
 .backdrop {
   z-index: 5;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;

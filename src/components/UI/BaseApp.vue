@@ -34,6 +34,7 @@ section {
  padding-left: 5rem;
  z-index: 1;
  font-size: 0.9rem;
+ overflow: hidden;
 }
 nav {
  position: fixed;

@@ -1,5 +1,4 @@
 <template>
-  <Teleport to="#app">
     <base-modal>
       <template #header>
         <div>
@@ -14,7 +13,6 @@
         <x-btn @click="$router.back()"></x-btn>
       </template>
     </base-modal>
-  </Teleport>
 </template>
 
 <script>
@@ -39,7 +37,6 @@ export default {
     },
   },
   created() {
-    console.log(this.id)
     this.selectedTask = this.$store.getters['tasks/tasks'].find(
       (task) => task.id === this.id
     );

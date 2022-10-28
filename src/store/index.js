@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import taskModule from './modules/task/index.js'
-import modalModule from './modules/modal/index.js'
+import columnModule from './modules/column/index.js'
 
 export default createStore({
   state: {
@@ -13,6 +13,6 @@ export default createStore({
   },
   modules: {
     tasks: taskModule,
-    modal: modalModule
+    columns: columnModule
   }
 })
