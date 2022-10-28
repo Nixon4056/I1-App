@@ -13,7 +13,7 @@ export default {
 div {
   background-color: transparent;
   transition: 0.3s all;
-  padding: 5px;
+  padding: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +24,7 @@ div:hover {
   background-color: #d9d9d9;
 }
 svg {
-  font-size: 2rem;
+  font-size: 1.7rem;
   aspect-ratio: 1/1;
 }
 </style>

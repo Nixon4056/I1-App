@@ -33,6 +33,7 @@ import navIcons from './components/svg/NavIcons.vue';
 import TheLogo from './components/svg/TheLogo.vue';
 import AddBtn from './components/layout/AddBtn.vue';
 import xBtn from './components/layout/xBtn.vue';
+import MenuBtn from './components/layout/MenuBtn.vue';
 
 const app = createApp(App);
 app.component('font-awesome-icon', FontAwesomeIcon)
@@ -45,7 +46,8 @@ app.component('user-icon', UserIcon);
 app.component('nav-icons', navIcons);
 app.component('the-logo', TheLogo);
 app.component('btn-add', AddBtn);
-app.component('x-add', xBtn);
+app.component('x-btn', xBtn);
+app.component('menu-btn', MenuBtn);
 app.use(store);
 app.use(router);
 app.mount('#app');

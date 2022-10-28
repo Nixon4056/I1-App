@@ -10,7 +10,7 @@ import TaskModal from '../components/tasks/TaskModal.vue';
 
 const routes = [
   { path: '/', redirect: '/dashboard'},
-  /* { path: '/:notFound(.*)', redirect: '/dashboard' }, */
+  { path: '/:notFound(.*)', redirect: '/dashboard' },
   {
     path: '/dashboard',
     name: 'dashboard',
@@ -32,7 +32,7 @@ const routes = [
         component: TheIt,
         props: true,
         children: [
-          { path: ':id', name: 'taskModal', component: TaskModal }
+          { path: 'task/:id', name: 'taskModal', component: TaskModal, props: true, }
         ]
       },
       {

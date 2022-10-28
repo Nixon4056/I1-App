@@ -3,12 +3,15 @@
     <base-modal>
       <template #header>
         <div>
-          <div>test</div>
-          <div>test</div>
-          <div>test</div>
-          <div>test</div>
+          <div>{{task.id}}</div>
+          <div>{{task.company}}</div>
+          <div>{{task.title}}</div>
+          <div>{{task.description}}</div>
+          <div>{{task.employee}}</div>
+          <div>{{task.date}}</div>
+          <div>{{task.status}}</div>
         </div>
-        <x-btn></x-btn>
+        <x-btn @click="$router.back()"></x-btn>
       </template>
     </base-modal>
   </Teleport>
@@ -23,11 +26,20 @@ export default {
     };
   },
   computed:{
-    company(){
-      return this.selectedTask.company
-    }
+    task(){
+      return {
+        id: this.selectedTask.id,
+        company: this.selectedTask.company,
+        title: this.selectedTask.title,
+        description: this.selectedTask.description,
+        employee: this.selectedTask.employee,
+        date: this.selectedTask.date,
+        status: this.selectedTask.status,
+      }
+    },
   },
   created() {
+    console.log(this.id)
     this.selectedTask = this.$store.getters['tasks/tasks'].find(
       (task) => task.id === this.id
     );

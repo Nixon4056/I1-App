@@ -20,8 +20,8 @@ export default {};
 
 <style scoped>
 .backdrop {
-  z-index: 20;
-  position: fixed;
+  z-index: 5;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -29,9 +29,10 @@ export default {};
   background-color: rgba(0, 0, 0, 0.2);
 }
 .modal {
+  z-index: 6;
   background-color: #f3f3f3;
   color: #747474;
-  position: fixed;
+  position: absolute;
   width: 85%;
   height: 70%;
   left: 7.5%;

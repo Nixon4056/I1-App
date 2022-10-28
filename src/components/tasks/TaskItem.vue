@@ -1,5 +1,5 @@
 <template>
-  <div class="task">
+  <div v-if="!prepared" class="task">
     <header>
       <div class="company">
         <div>
@@ -18,7 +18,7 @@
     <section>
       <div class="description">
         <h1>
-          {{description + id}}
+          {{description}}
         </h1>
       </div>
       <div class="employee">
@@ -28,9 +28,39 @@
           </div>
           <h1>{{employee}}</h1>
         </div>
-        <router-link :to="taskDetailsLink">
-          <font-awesome-icon class="toggle_task" icon="fa-solid fa-bars" />
-        </router-link>
+        <menu-btn link :destination="taskDetailsLink" /> <!-- TOGGLE TASK DETAILS -->
+      </div>
+    </section>
+  </div>
+  <!-- BLANK TASK -->
+  <div v-else class="task">
+    <header>
+      <div class="company">
+        <div>
+          <font-awesome-icon icon="fa-solid fa-industry" />
+        </div>
+        <h1><input type="text" placeholder="Firma"></h1>
+      </div>
+      <div class="date">
+        <h3></h3>
+        <div class="dateTimer">
+          <font-awesome-icon icon="fa-regular fa-clock" />
+        </div>
+      </div>
+    </header>
+    <section>
+      <div class="description">
+        <h1>
+          <input placeholder="Opis" type="text" />
+        </h1>
+      </div>
+      <div class="employee">
+        <div>
+          <div>
+            <font-awesome-icon icon="fa-solid fa-user" />
+          </div>
+          <h1><input placeholder="Odpowiedzialny" type="text"></h1>
+        </div>
       </div>
     </section>
   </div>
@@ -38,16 +68,33 @@
 
 <script>
 export default {
-  props: ['company', 'description', 'employee', 'id'],
+  props: ['company', 'description', 'employee', 'id', 'prepared'],
   computed:{
     taskDetailsLink(){
-      return this.$route.path + '/' + this.id; //Task Details with ID
+      return this.$route.path + '/task/' + this.id; //Task Details with ID
     }
   }
 };
 </script>
 
 <style scoped>
+input{
+  border: none;
+  border-bottom: 0px #d9d9d9 solid;
+  transition: 0.3s all;
+  color: #747474;
+  -webkit-appearance: none;
+  outline: none !important;
+}
+input:hover{
+  border-bottom: 1px #d9d9d9 solid;
+}
+input:active{
+  border-bottom: 1px #d9d9d9 solid;
+}
+input:focus{
+  border-bottom: 1px #d9d9d9 solid;
+}
 .task {
   background-color: #ffffff;
   border-radius: 6px;
@@ -102,7 +149,7 @@ header {
   border-radius: 5px;
 }
 .dateTimer svg{
-  font-size: .8rem;
+  font-size: .7rem;
 }
 .date h2 {
   font-size: 0.7rem;
@@ -156,11 +203,5 @@ section {
 .employee div svg {
   color: white;
   font-size: 1rem;
-}
-.toggle_task {
-  bottom: 0;
-  right: 0;
-  color: #FFD12D;
-  font-size: 1.2rem;
 }
 </style>
