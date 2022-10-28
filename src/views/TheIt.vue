@@ -102,7 +102,6 @@ export default {
     },
     startDrag(event, item){
       console.log(event)
-      event.target.style.backgroundColor = 'red'
       event.dataTransfer.dropEffect = 'move'
       event.dataTransfer.effectAllowed = 'move'
       event.dataTransfer.setData('itemId', item.id)
