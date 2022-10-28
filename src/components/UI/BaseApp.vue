@@ -33,7 +33,6 @@ section {
  width: 100%;
  padding-left: 5rem;
  z-index: 1;
- padding-top: 50px;
  font-size: 0.9rem;
 }
 nav {

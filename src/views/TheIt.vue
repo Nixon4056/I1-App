@@ -15,6 +15,7 @@
             :draggable="true"
             @dragstart="startDrag($event, task)"
             :key="task.id"
+            :id="task.id"
             :company="task.company"
             :description="task.description"
             :employee="task.employee"
@@ -31,6 +32,7 @@
             :draggable="true"
             @dragstart="startDrag($event, task)"
             :key="task.id"
+            :id="task.id"
             :company="task.company"
             :description="task.description"
             :employee="task.employee"
@@ -47,6 +49,7 @@
             :draggable="true"
             @dragstart="startDrag($event, task)"
             :key="task.id"
+            :id="task.id"
             :company="task.company"
             :description="task.description"
             :employee="task.employee"
@@ -63,6 +66,7 @@
             :draggable="true"
             @dragstart="startDrag($event, task)"
             :key="task.id"
+            :id="task.id"
             :company="task.company"
             :description="task.description"
             :employee="task.employee"
@@ -101,8 +105,6 @@ export default {
       })
     },
     startDrag(event, item){
-      console.log(event)
-      event.target.style.backgroundColor = 'red'
       event.dataTransfer.dropEffect = 'move'
       event.dataTransfer.effectAllowed = 'move'
       event.dataTransfer.setData('itemId', item.id)
@@ -115,7 +117,6 @@ export default {
   },
   created() {
     this.tasks = this.$store.getters['tasks/tasks'];
-    console.log(this.tasks)
   },
 };
 </script>

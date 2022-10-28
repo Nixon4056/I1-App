@@ -18,7 +18,7 @@
     <section>
       <div class="description">
         <h1>
-          {{description}}
+          {{description + id}}
         </h1>
       </div>
       <div class="employee">
@@ -28,7 +28,9 @@
           </div>
           <h1>{{employee}}</h1>
         </div>
-        <font-awesome-icon class="toggle_task" icon="fa-solid fa-bars" />
+        <router-link :to="taskDetailsLink">
+          <font-awesome-icon class="toggle_task" icon="fa-solid fa-bars" />
+        </router-link>
       </div>
     </section>
   </div>
@@ -36,7 +38,12 @@
 
 <script>
 export default {
-  props: ['company', 'description', 'employee']
+  props: ['company', 'description', 'employee', 'id'],
+  computed:{
+    taskDetailsLink(){
+      return this.$route.path + '/' + this.id; //Task Details with ID
+    }
+  }
 };
 </script>
 
@@ -91,16 +98,20 @@ header {
 }
 .dateTimer {
   background-color: #d9d9d9;
-  padding: 5px 10px;
+  padding: 2px 7px;
   border-radius: 5px;
+}
+.dateTimer svg{
+  font-size: .8rem;
 }
 .date h2 {
   font-size: 0.7rem;
   margin-left: 5px;
 }
 .date h3 {
-  font-size: 0.7rem;
-  margin-right: 10px;
+  font-size: 0.6rem;
+  font-weight: 400;
+  margin-right: 5px;
 }
 section {
   display: flex;

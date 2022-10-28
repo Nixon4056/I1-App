@@ -7,7 +7,7 @@
   <router-link to="/dashboard/serwis"><li><nav-icons type="serwis"/></li></router-link>
   <router-link to="/dashboard/it"><li><nav-icons type="it"/></li></router-link>
   <router-link to="/dashboard/docs"><li><nav-icons type="docs"/></li></router-link>
-  <router-link to="/dashboard/zabbix"><li><nav-icons type="z"/></li></router-link>
+  <!-- <router-link to="/dashboard/zabbix"><li><nav-icons type="z"/></li></router-link> -->
   
   
   
