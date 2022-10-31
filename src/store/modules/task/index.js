@@ -19,7 +19,7 @@ export default {
           description: 'Problem z WiFi',
           employee: 'Nikodem Wicon',
           date: '24 Paź',
-          status: 3,
+          status: 1,
         },
         {
           id: '34566',
@@ -37,7 +37,7 @@ export default {
           description: 'Problem z WiFi',
           employee: 'Nikodem Wicon',
           date: '24 Paź',
-          status: 2,
+          status: 4,
         },
       ],
     };
@@ -45,7 +45,7 @@ export default {
   getters: {
     tasks(state){
       return state.tasks;
-    }
+    },
   },
   mutations: {
   },

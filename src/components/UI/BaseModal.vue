@@ -1,16 +1,14 @@
 <template>
-  <div class="backdrop">
-    <div class="modal">
-      <header>
-        <slot name="header"></slot>
-      </header>
-      <section class="inner1">
-        <slot name="inner1"></slot>
-      </section>
-      <section class="inner2">
-        <slot name="inner2"></slot>
-      </section>
-    </div>
+  <div class="modal">
+    <header>
+      <slot name="header"></slot>
+    </header>
+    <section class="inner1">
+      <slot name="inner1"></slot>
+    </section>
+    <section class="inner2">
+      <slot name="inner2"></slot>
+    </section>
   </div>
 </template>
 
@@ -19,15 +17,6 @@ export default {};
 </script>
 
 <style scoped>
-.backdrop {
-  z-index: 5;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
-}
 .modal {
   z-index: 6;
   background-color: #f3f3f3;

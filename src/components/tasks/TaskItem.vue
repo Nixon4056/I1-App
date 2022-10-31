@@ -32,8 +32,8 @@
       </div>
     </section>
   </div>
-  <!-- BLANK TASK -->
-  <div v-else class="task">
+  <!-- BLANK TASK ---------------------------------------------------------------------------------- -->
+  <div v-else class="task prepared">
     <header>
       <div class="company">
         <div>
@@ -50,17 +50,17 @@
       </div>
     </header>
     <section>
-      <div class="description">
-        <h1>
-          <input placeholder="Opis" type="text" />
-        </h1>
+      <div class="description__prepared">
+        <textarea name="text" id="description" cols="30" rows="10" placeholder="Opis"></textarea>
       </div>
       <div class="employee">
-        <div>
+        <div class="choose__user">
           <div>
             <font-awesome-icon icon="fa-solid fa-user" />
           </div>
-          <h1><input placeholder="Odpowiedzialny" type="text"></h1>
+          <h1>$user</h1>
+          <font-awesome-icon @click="openDropDownMenu($event)" class="arrowDown" icon="fa-solid fa-chevron-down" />
+          <drop-down-menu :offset="offset" v-if="menuIsVisible" />
         </div>
       </div>
     </section>
@@ -96,6 +96,25 @@ export default {
         require: true,
     },
   },
+  data(){
+    return{
+      menuIsVisible: false,
+      offset: null,
+    };
+  },
+  methods:{
+    openDropDownMenu(event){
+      this.menuIsVisible = !this.menuIsVisible
+      console.log(event.screenX) 
+      console.log(event.screenY) 
+      this.offset = {
+        parent: event.target.parentElement.parentElement.parentElement.parentElement,
+        xOffset: event.screenX,
+        yOffset: event.screenY,
+      }
+      
+    }
+  },
   computed:{
     taskDetailsLink(){
       return this.$route.path + '/task/' + this.id; //Task Details with ID
@@ -103,8 +122,48 @@ export default {
   }
 };
 </script>
-
 <style scoped>
+.prepared{
+  border: 2px #3866dc solid;
+}
+.addTime{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  padding: 2px 7px;
+  border-radius: 5px;
+  transition: 0.3s all;
+}
+.addTime svg{
+  font-size: .7rem;
+}
+.addTime:hover{
+  background-color: #f3f3f3;
+}
+.description__prepared{
+  width: 100%;
+}
+.description__prepared textarea {
+  font-size: 0.8rem;
+  font-weight: 400;
+  height: 2rem;
+  max-height: 10rem;
+  max-width: 70%;
+}
+.choose__user{
+  position: relative;
+}
+.choose__user h1{
+  margin-right: 10px;
+}
+.arrowDown{
+  color: #747474 !important;
+  font-size: .8rem !important;
+}
+</style>
+<style scoped> /* TASK */
+textarea,
 input{
   border: none;
   border-bottom: 0px #d9d9d9 solid;
@@ -113,16 +172,24 @@ input{
   -webkit-appearance: none;
   outline: none !important;
 }
+textarea,
+input{
+  transition: none !important;
+}
+textarea:hover,
 input:hover{
   border-bottom: 1px #d9d9d9 solid;
 }
+textarea:active,
 input:active{
   border-bottom: 1px #d9d9d9 solid;
 }
-input:focus{
+textarea:active,
+input:active{
   border-bottom: 1px #d9d9d9 solid;
 }
 .task {
+  transition: 0.3s all;
   background-color: #ffffff;
   border-radius: 6px;
   width: 100%;
@@ -164,30 +231,24 @@ header {
 .company div svg {
   color: white;
 }
-.date,
+.date{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .dateTimer {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.addTime{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #f3f3f3;
-  padding: 2px 7px;
-  border-radius: 5px;
-  transition: 0.3s all;
-}
-.addTime:hover{
-  background-color: #d9d9d9;
-}
+
 .dateTimer {
   background-color: #d9d9d9;
   padding: 2px 7px;
   border-radius: 5px;
 }
-.dateTimer svg, .addTime svg{
+.dateTimer svg{
   font-size: .7rem;
 }
 .date h2 {

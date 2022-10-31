@@ -12,6 +12,7 @@ import { faIndustry } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faUserSecret)
 library.add(faClock)
@@ -19,6 +20,7 @@ library.add(faIndustry)
 library.add(faUser)
 library.add(faBars)
 library.add(faXmark)
+library.add(faChevronDown)
 
 //COMPONENTS
 import BaseKanban from './components/UI/BaseKanban.vue';
@@ -34,6 +36,7 @@ import TheLogo from './components/svg/TheLogo.vue';
 import AddBtn from './components/layout/AddBtn.vue';
 import xBtn from './components/layout/xBtn.vue';
 import MenuBtn from './components/layout/MenuBtn.vue';
+import DropDownMenu from './components/layout/DropDownMenu.vue';
 
 const app = createApp(App);
 app.component('font-awesome-icon', FontAwesomeIcon)
@@ -48,6 +51,7 @@ app.component('the-logo', TheLogo);
 app.component('btn-add', AddBtn);
 app.component('x-btn', xBtn);
 app.component('menu-btn', MenuBtn);
+app.component('drop-down-menu', DropDownMenu);
 app.use(store);
 app.use(router);
 app.mount('#app');

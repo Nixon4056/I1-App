@@ -12,6 +12,7 @@
           @dragenter.prevent
           @dragover.prevent
           :title="column.name"
+          :counter="filteredTasks(index + 1).length"
         >
           <the-task
             v-for="task in filteredTasks(index + 1)"
@@ -24,74 +25,7 @@
             :employee="task.employee"
           >
           </the-task>
-          <the-task prepared></the-task>
-          <template #btn>
-            <btn-add></btn-add>
-          </template>
         </base-column>
-<!--         <base-column
-          @drop="onDrop($event, 2)"
-          @dragenter.prevent
-          @dragover.prevent
-          title="W REALIZACJI"
-        >
-          <the-task
-            v-for="task in filteredTasks(2)"
-            :draggable="true"
-            @dragstart="startDrag($event, task)"
-            :key="task.id"
-            :id="task.id"
-            :company="task.company"
-            :description="task.description"
-            :employee="task.employee"
-          >
-          </the-task>
-          <template #btn>
-            <btn-add></btn-add>
-          </template>
-        </base-column>
-        <base-column
-          @drop="onDrop($event, 3)"
-          @dragenter.prevent
-          @dragover.prevent
-          title="ZREALIZOWANO"
-        >
-          <the-task
-            v-for="task in filteredTasks(3)"
-            :draggable="true"
-            @dragstart="startDrag($event, task)"
-            :key="task.id"
-            :id="task.id"
-            :company="task.company"
-            :description="task.description"
-            :employee="task.employee"
-          >
-          </the-task>
-          <template #btn>
-            <btn-add></btn-add>
-          </template>
-        </base-column>
-        <base-column
-          @drop="onDrop($event, 4)"
-          @dragenter.prevent
-          @dragover.prevent
-          title="ODŁOŻONO"
-        >
-          <the-task
-            v-for="task in filteredTasks(4)"
-            :draggable="true"
-            @dragstart="startDrag($event, task)"
-            :key="task.id"
-            :id="task.id"
-            :company="task.company"
-            :description="task.description"
-            :employee="task.employee"
-          >
-          </the-task>
-          <template #btn>
-            <btn-add></btn-add>
-          </template>
-        </base-column> -->
       </template>
     </base-kanban>
     <router-view v-slot="slotProps">
@@ -106,6 +40,7 @@
 export default {
   data() {
     return {
+      taskIsAdding: false,
       tasks: [],
       columns: [],
     };
@@ -149,20 +84,20 @@ export default {
 <style scoped>
 .route-enter-from {
   opacity: 0;
-  transform: translateY(-30px);
+  transform: translateY(30px);
 }
 
 .route-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(-30px);
 }
 
 .route-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .route-leave-active {
-  transition: all 0.3s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 .route-enter-to,

@@ -2,13 +2,13 @@
     <base-modal>
       <template #header>
         <div>
-          <div>{{task.id}}</div>
-          <div>{{task.company}}</div>
-          <div>{{task.title}}</div>
-          <div>{{task.description}}</div>
-          <div>{{task.employee}}</div>
-          <div>{{task.date}}</div>
-          <div>{{task.status}}</div>
+          <div>{{ task.id }}</div>
+          <div>{{ task.company }}</div>
+          <div>{{ task.title }}</div>
+          <div>{{ task.description }}</div>
+          <div>{{ task.employee }}</div>
+          <div>{{ task.date }}</div>
+          <div>{{ task.status }}</div>
         </div>
         <x-btn @click="$router.back()"></x-btn>
       </template>
@@ -17,14 +17,14 @@
 
 <script>
 export default {
-  props:['id'],
-  data(){
-    return{
+  props: ['id'],
+  data() {
+    return {
       selectedTask: null,
     };
   },
-  computed:{
-    task(){
+  computed: {
+    task() {
       return {
         id: this.selectedTask.id,
         company: this.selectedTask.company,
@@ -33,7 +33,7 @@ export default {
         employee: this.selectedTask.employee,
         date: this.selectedTask.date,
         status: this.selectedTask.status,
-      }
+      };
     },
   },
   created() {
@@ -44,4 +44,5 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

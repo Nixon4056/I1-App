@@ -2,20 +2,34 @@
   <div class="column">
     <header>
       <span>{{ title }}</span>
-      <div class="counter__container">1</div>
+      <div class="counter__container">{{ counter }}</div>
     </header>
     <div class="task__container">
       <slot></slot>
+      <the-task v-if="opened" prepared></the-task>
     </div>
     <div class="adder">
-      <slot name="btn"></slot>
+      <btn-add @click="open"></btn-add>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['title']
+  props: ['title', 'counter'],
+  data(){
+    return{
+      opened: false,
+    }
+  },
+  methods:{
+    open(){
+      this.opened = !this.opened
+    },
+    hide(){
+      this.opened = false
+    }
+  }
 };
 </script>
 
