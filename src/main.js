@@ -39,6 +39,7 @@ import AddBtn from './components/layout/AddBtn.vue';
 import xBtn from './components/layout/xBtn.vue';
 import MenuBtn from './components/layout/MenuBtn.vue';
 import DropDownMenu from './components/layout/DropDownMenu.vue';
+import DropDownBS from './components/layout/DropDownBS.vue';
 import TheCompany from './components/layout/TheCompany.vue';
 
 const app = createApp(App);
@@ -57,6 +58,7 @@ app.component('btn-add', AddBtn);
 app.component('x-btn', xBtn);
 app.component('menu-btn', MenuBtn);
 app.component('dropdown-menu', DropDownMenu);
+app.component('dropdown-bs', DropDownBS);
 app.component('the-company', TheCompany);
 app.use(store);
 app.use(router);

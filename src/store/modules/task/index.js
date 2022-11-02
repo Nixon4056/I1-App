@@ -96,6 +96,7 @@ export default {
         id: id,
         company: payload.company,
         title: payload.title,
+        description: 'Dodaj opis...',
         employee: payload.employee,
         date: '21 Gru',
         status: payload.status
