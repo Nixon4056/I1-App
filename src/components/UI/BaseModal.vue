@@ -19,7 +19,7 @@ export default {};
 <style scoped>
 .modal {
   z-index: 6;
-  background-color: #f3f3f3;
+  background-color: white;
   color: #747474;
   position: absolute;
   width: 85%;
