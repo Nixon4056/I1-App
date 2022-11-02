@@ -3,16 +3,43 @@
     <template #header>
       <div>
         <the-company modal :text="task.company"></the-company>
+        <div class="title">
+          <h1>{{ task.title }}</h1>
+        </div>
       </div>
-      <x-btn @click="$router.back()"></x-btn>
+      <x-btn @click="back"></x-btn>
     </template>
     <template #inner1>
-      <div class="title">
-        <h1>TITLE<div>{{ task.title }}</div></h1>
-      </div>
-      <div class="description">
+      <div class="description inner1Section">
         <h1>Opis</h1>
-        <div>{{ task.description }}</div>
+        <div
+          @click="DescriptionEditorHandler(true)"
+          v-if="!editDescription"
+          class="descriptionHandler"
+        >
+          <h1>{{ task.description }}</h1>
+        </div>
+        <div v-else class="description__change">
+          <textarea
+            v-model="newDescription"
+            name="description"
+            id="description"
+            :placeholder="
+              !task.description ? 'Dodaj opis...' : task.description
+            "
+          ></textarea>
+          <save-buttons
+            @save="changeDescription"
+            @cancel="DescriptionEditorHandler(false)"
+            cancelBtn
+          ></save-buttons>
+        </div>
+      </div>
+      <div class="sub__task__adder inner1Section">
+        <h1>Zlecenia dodatkowe</h1>
+      </div>
+      <div class="sub__task__adder inner1Section">
+        <h1>Aktywność</h1>
       </div>
     </template>
     <template #inner2>
@@ -44,8 +71,31 @@ export default {
   props: ['id'],
   data() {
     return {
+      newDescription: '',
       selectedTask: null,
+      editDescription: false,
     };
+  },
+  methods: {
+    DescriptionEditorHandler(condition) {
+      this.editDescription = condition;
+      this.newDescription =
+        this.task.description === 'Dodaj opis...'
+          ? this.newDescription
+          : this.task.description;
+    },
+
+    changeDescription() {
+      this.$store.commit('tasks/changeDescription', {
+        id: this.selectedTask.id,
+        newDescription: !this.newDescription ? 'Dodaj opis...' : this.newDescription,
+      });
+      this.editDescription = false;
+    },
+    back() {
+      this.$router.back();
+      this.DescriptionEditorHandler(false);
+    },
   },
   computed: {
     task() {
@@ -73,5 +123,50 @@ export default {
   border: 1px #f3f3f3 solid;
   border-radius: 5px;
   padding: 1rem;
+}
+.title {
+  margin: 1rem 0;
+  font-size: 1.6rem;
+}
+.description {
+  margin: 1rem 0;
+}
+.inner1Section h1 {
+  font-size: 1rem;
+  max-width: 100%;
+}
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin: 1rem 0;
+}
+.row h1 {
+  min-width: 150px;
+}
+.descriptionHandler {
+  transition: 0.3s all;
+  margin: 0 -0.5rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+
+  cursor: pointer;
+}
+.descriptionHandler h1 {
+  font-weight: 400;
+  word-wrap: break-word;
+}
+.descriptionHandler:hover {
+  background-color: #f3f3f3;
+}
+#description {
+  width: 100%;
+  height: fit-content;
+  padding: 1rem;
+  resize: none;
+  outline: none !important;
+  border: 1px #f3f3f3 solid;
+  font-family: 'Poppins', sans-serif;
 }
 </style>

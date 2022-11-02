@@ -13,7 +13,7 @@
     <section>
       <div class="description">
         <h1>
-          {{ description }}
+          {{ title }}
         </h1>
       </div>
       <div class="employee">
@@ -38,7 +38,7 @@ export default {
       default: 'error',
       require: true,
     },
-    description: {
+    title: {
       type: String,
       default: 'error',
       require: true,

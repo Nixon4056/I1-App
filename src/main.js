@@ -31,6 +31,7 @@ import ThePreTask from './components/tasks/PreTask.vue';
 
 //SIMPLE COMPONENTS
 import LoginBtn from './components/layout/TheLoginBtn.vue';
+import SaveButtons from './components/layout/SaveButtons.vue';
 import UserIcon from './components/svg/UserIcon.vue';
 import navIcons from './components/svg/NavIcons.vue';
 import TheLogo from './components/svg/TheLogo.vue';
@@ -48,6 +49,7 @@ app.component('base-modal', BaseModal);
 app.component('the-task', TheTask); //TASKBOX
 app.component('pre-task', ThePreTask); //TASKBOX
 app.component('login-btn', LoginBtn);
+app.component('save-buttons', SaveButtons);
 app.component('user-icon', UserIcon);
 app.component('nav-icons', navIcons);
 app.component('the-logo', TheLogo);

@@ -34,7 +34,7 @@ export default {
 .company {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: left;
 }
 .company div {
   padding: 5px;
@@ -56,7 +56,7 @@ export default {
 .companyModal {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: left;
 }
 .companyModal div {
   padding: 5px;

@@ -21,7 +21,7 @@
             :key="task.id"
             :id="task.id"
             :company="task.company"
-            :description="task.description"
+            :title="task.title"
             :employee="task.employee"
           >
           </the-task>

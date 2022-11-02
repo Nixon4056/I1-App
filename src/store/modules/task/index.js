@@ -6,10 +6,12 @@ export default {
         {
           id: 112,
           company: 'JKMed',
-          description: 'Sprawdzenie danych',
+          title: 'Sprawdzenie danych',
+          description: 'Dodaj opis...',
           employee: {
             id: 3423,
             name: 'Mariusz Moszczyński',
+            initials: 'MM',
             email: 'mariusz@informatyk1.pl',
             color: '#3866DC',
             admin: false,
@@ -21,10 +23,12 @@ export default {
         {
           id: 113,
           company: 'Kornix Wejherowo',
-          description: 'Problem z WiFi',
+          title: 'Problem z Drukarką',
+          description: 'Dodaj opis...',
           employee: {
             id: 3422,
             name: 'Nikodem Wicon',
+            initials: 'NW',
             email: 'nikodem@informatyk1.pl',
             color: '#000000',
             admin: true,
@@ -36,10 +40,12 @@ export default {
         {
           id: 114,
           company: 'Cristap',
-          description: 'Problem z WiFi',
+          title: 'Problem z WiFi',
+          description: 'Dodaj opis...',
           employee: {
             id: 3424,
             name: 'Łukasz Grabowski',
+            initials: 'ŁG',
             email: 'nikodem@informatyk1.pl',
             color: '#38DCD2',
             admin: false,
@@ -51,10 +57,12 @@ export default {
         {
           id: 115,
           company: 'PIW',
-          description: 'Problem z WiFi',
+          title: 'Problem z WiFi',
+          description: 'Dodaj opis...',
           employee: {
             id: 3425,
             name: 'Mateusz Koszałka',
+            initials: 'MK',
             email: 'nikodem@informatyk1.pl',
             color: '#DC38D5',
             admin: false,
@@ -70,14 +78,13 @@ export default {
     tasks(state){
       return state.tasks;
     },
-    tasksId(state){
-      const tasks = state.tasks
-      return tasks[tasks.length-1].id
-    }
   },
   mutations: {
     addTask(state, payload){
       state.tasks.push(payload);
+    },
+    changeDescription(state, payload){
+      state.tasks.find((task) => task.id === payload.id).description = payload.newDescription
     }
   },
   actions: {
@@ -88,7 +95,7 @@ export default {
       context.commit('addTask', {
         id: id,
         company: payload.company,
-        description: payload.description,
+        title: payload.title,
         employee: payload.employee,
         date: '21 Gru',
         status: payload.status

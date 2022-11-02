@@ -30,17 +30,32 @@ export default {};
   padding: 2%;
   display: grid;
   display: grid;
-  grid-template-columns: 1fr 0.6fr;
+  grid-template-columns: 1.2fr 0.8fr;
   grid-template-rows: 10% 1fr;
   gap: 0px 0px;
   grid-template-areas:
     'header header'
     '. .';
+  overflow: hidden;
+}
+.inner1{
+  overflow-y: scroll;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+.inner1,
+.inner2{
+  padding: 0 1rem;
 }
 header {
   grid-area: header;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+}
+header,
+section{
+  padding: 0 .5rem;
 }
 </style>

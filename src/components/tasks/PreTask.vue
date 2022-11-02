@@ -29,12 +29,12 @@
     <section>
       <div class="description__prepared">
         <textarea
-          name="text"
-          id="description"
+          name="title"
+          id="title"
           cols="30"
           rows="10"
           placeholder="Opis"
-          v-model="description"
+          v-model="title"
         ></textarea>
       </div>
       <div class="employee">
@@ -67,7 +67,7 @@ export default {
     return {
       companiesDropDown: false,
       usersDropDown: false,
-      description: '',
+      title: '',
       status: 1,
     };
   },
@@ -84,7 +84,7 @@ export default {
       this.$emit('closeTask')
       this.$store.dispatch('tasks/addTask', {
         company: this.getChoiceCompany.name,
-        description: this.description,
+        title: this.title,
         employee:this.getChoiceUser,
         status: this.status
       })
@@ -104,9 +104,6 @@ export default {
       return this.$store.getters['users/getUsers'];
     },
   },
-  mounted(){
-    console.log(this.$store.getters['tasks/tasksId'])
-  }
 };
 </script>
 
