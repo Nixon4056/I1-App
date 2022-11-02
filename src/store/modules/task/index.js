@@ -4,36 +4,32 @@ export default {
     return {
       tasks: [
         {
-          id: '3213132',
+          id: 112,
           company: 'JKMed',
-          title: 'Server DELL',
           description: 'Sprawdzenie danych',
           employee: 'Mariusz Moszczyński',
           date: '23 Paź',
           status: 1,
         },
         {
-          id: '34563456',
+          id: 113,
           company: 'Kornix Wejherowo',
-          title: 'Sieć',
           description: 'Problem z WiFi',
           employee: 'Nikodem Wicon',
           date: '24 Paź',
           status: 1,
         },
         {
-          id: '34566',
+          id: 114,
           company: 'Cristap',
-          title: 'Sieć',
           description: 'Problem z WiFi',
           employee: 'Nikodem Wicon',
           date: '24 Paź',
           status: 2,
         },
         {
-          id: '765567',
+          id: 115,
           company: 'PIW',
-          title: 'Sieć',
           description: 'Problem z WiFi',
           employee: 'Nikodem Wicon',
           date: '24 Paź',
@@ -46,10 +42,30 @@ export default {
     tasks(state){
       return state.tasks;
     },
+    tasksId(state){
+      const tasks = state.tasks
+      return tasks[tasks.length-1].id
+    }
   },
   mutations: {
+    addTask(state, payload){
+      state.tasks.push(payload);
+    }
   },
   actions: {
+    addTask(context, payload){
+      const tasks = context.getters.tasks
+      const id = tasks[tasks.length - 1].id + 1
+      console.log(id)
+      context.commit('addTask', {
+        id: id,
+        company: payload.company,
+        description: payload.description,
+        employee: payload.employee,
+        date: '21 Gru',
+        status: payload.status
+      })
+    }
   },
   modules: {
   }

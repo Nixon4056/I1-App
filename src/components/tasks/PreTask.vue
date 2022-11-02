@@ -1,70 +1,116 @@
 <template>
-  <div class="task">
+  <div class="task prepared">
     <header>
-      <div class="company">
+      <div class="company" @click="listHandler('companies')">
         <div>
           <font-awesome-icon icon="fa-solid fa-industry" />
         </div>
-        <h1>{{ company }}</h1>
+        <h1>{{ getChoiceCompany.name }}</h1>
+        <font-awesome-icon
+          :class="{ rotated: companiesDropDown }"
+          @click="companyPicked = false"
+          class="arrowDown"
+          icon="fa-solid fa-chevron-down"
+        />
       </div>
       <div class="date">
-        <h3>za 2 dni</h3>
-        <div class="dateTimer">
+        <div class="addTime">
           <font-awesome-icon icon="fa-regular fa-clock" />
-          <h2>23 Paź</h2>
+          <h2>+</h2>
         </div>
       </div>
     </header>
+    <dropdown-menu
+      :companies="companies"
+      v-if="companiesDropDown"
+      @close="listHandler('companies')"
+      company
+    />
     <section>
-      <div class="description">
-        <h1>
-          {{ description }}
-        </h1>
+      <div class="description__prepared">
+        <textarea
+          name="text"
+          id="description"
+          cols="30"
+          rows="10"
+          placeholder="Opis"
+          v-model="description"
+        ></textarea>
       </div>
       <div class="employee">
-        <div>
-          <div>
+        <div class="choose__user" @click="listHandler('users')">
+          <div :style="{backgroundColor : getChoiceUser.color}">
             <font-awesome-icon icon="fa-solid fa-user" />
           </div>
-          <h1>{{ employee }}</h1>
+          <h1>{{ getChoiceUser.name }}</h1>
+          <font-awesome-icon
+            :class="{ rotated: usersDropDown }"
+            class="arrowDown"
+            icon="fa-solid fa-chevron-down"
+          />
         </div>
-        <menu-btn link :destination="taskDetailsLink" />
-        <!-- TOGGLE TASK DETAILS -->
+        <btn-add @click="addTask"></btn-add>
       </div>
+      <dropdown-menu
+        :users="users"
+        @close="listHandler('users')"
+        v-if="usersDropDown"
+        user
+      />
     </section>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    company: {
-      type: String,
-      default: 'error',
-      require: true,
+  data() {
+    return {
+      companiesDropDown: false,
+      usersDropDown: false,
+      description: '',
+      status: 1,
+    };
+  },
+  methods: {
+    listHandler(which) {
+      if (which === 'users') {
+        this.usersDropDown = !this.usersDropDown;
+      }
+      if (which === 'companies') {
+        this.companiesDropDown = !this.companiesDropDown;
+      }
     },
-    description: {
-      type: String,
-      default: 'error',
-      require: true,
-    },
-    employee: {
-      type: String,
-      default: 'error',
-      require: true,
-    },
-    id: {
-      type: Number,
-      require: true,
+    addTask(){
+      this.$emit('closeTask')
+      this.$store.dispatch('tasks/addTask', {
+        company: this.getChoiceCompany.name,
+        description: this.description,
+        employee:this.getChoiceUser,
+        status: this.status
+      })
+      console.log(this.$store.getters['tasks/tasks'])
     }
   },
   computed: {
-    taskDetailsLink() {
-      return this.$route.path + '/task/' + this.id; //Task Details with ID
+    getChoiceUser() {
+      return this.$store.getters['users/getChoice'];
+    },
+    getChoiceCompany() {
+      return this.$store.getters['companies/getChoice'];
+    },
+    companies() {
+      return this.$store.getters['companies/getCompanies'];
+    },
+    users() {
+      return this.$store.getters['users/getUsers'];
     },
   },
+  mounted(){
+    console.log(this.$store.getters['tasks/tasksId'])
+  }
 };
 </script>
+
 <style scoped>
 .prepared {
   border: 2px #3866dc solid;
@@ -97,10 +143,11 @@ export default {
 .choose__user {
   position: relative;
 }
-.choose__user  div{
+.choose__user div {
   transition: 0.3s background-color;
 }
-.choose__user h1 {
+.choose__user h1,
+.company h1 {
   margin-right: 10px;
 }
 .arrowDown {
@@ -108,9 +155,6 @@ export default {
   color: #747474 !important;
   font-size: 0.8rem !important;
 }
-</style>
-<style scoped>
-/* TASK */
 textarea,
 input {
   border: none;
@@ -119,6 +163,9 @@ input {
   color: #747474;
   -webkit-appearance: none;
   outline: none !important;
+}
+input {
+  width: fit-content;
 }
 textarea,
 input {
@@ -157,9 +204,10 @@ header {
   justify-content: space-between;
 }
 .company {
+  max-width: 80%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: left;
 }
 .company div {
   padding: 5px;
@@ -251,7 +299,7 @@ section {
   color: white;
   font-size: 1rem;
 }
-.rotated{
+.rotated {
   rotate: 180deg;
 }
 </style>

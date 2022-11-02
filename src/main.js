@@ -27,6 +27,7 @@ import BaseKanban from './components/UI/BaseKanban.vue';
 import BaseColumn from './components/UI/BaseColumn.vue';
 import BaseModal from './components/UI/BaseModal.vue';
 import TheTask from './components/tasks/TaskItem.vue';
+import ThePreTask from './components/tasks/PreTask.vue';
 
 //SIMPLE COMPONENTS
 import LoginBtn from './components/layout/TheLoginBtn.vue';
@@ -44,6 +45,7 @@ app.component('base-kanban', BaseKanban);
 app.component('base-column', BaseColumn);
 app.component('base-modal', BaseModal);
 app.component('the-task', TheTask); //TASKBOX
+app.component('pre-task', ThePreTask); //TASKBOX
 app.component('login-btn', LoginBtn);
 app.component('user-icon', UserIcon);
 app.component('nav-icons', navIcons);
@@ -51,7 +53,7 @@ app.component('the-logo', TheLogo);
 app.component('btn-add', AddBtn);
 app.component('x-btn', xBtn);
 app.component('menu-btn', MenuBtn);
-app.component('drop-down-menu', DropDownMenu);
+app.component('dropdown-menu', DropDownMenu);
 app.use(store);
 app.use(router);
 app.mount('#app');

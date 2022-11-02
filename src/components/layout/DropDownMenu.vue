@@ -1,31 +1,93 @@
 <template>
-<!--   <Teleport> -->
-    <section
-      class="menu__container"
-      :style="{ top: offset.yOffset + 'px', left: offset.xOffset + 'px' }"
-    >
-      <ul class="links">
-        <li>Nikodem Wicon</li>
-        <li>Mariusz Moszczynski</li>
-        <li>Łukasz Grabowski</li>
-        <li>Dawid Necel</li>
-        <li>Mateusz Koszałka</li>
-        <li>Olaf Holcer</li>
-      </ul>
-    </section>
-<!--   </Teleport> -->
+  <section v-if="company" class="menu__container">
+    <ul class="links">
+      <li>
+        <input
+          @input="filter($event.target.value.toUpperCase(), companies)"
+          placeholder="Wpisz nazwe firmy"
+          type="text"
+        />
+      </li>
+      <li
+        @click="setOutput('companies', company)"
+        v-for="company in filteredListCompanies"
+        :key="company.id"
+      >
+        {{ company.name }}
+      </li>
+    </ul>
+  </section>
+  <section v-if="user" class="menu__container">
+    <ul class="links">
+      <li>
+        <input
+          @input="filter($event.target.value.toUpperCase(), users)"
+          placeholder="Wpisz Usera"
+          type="text"
+        />
+      </li>
+      <li
+        @click="setOutput('users', user)"
+        v-for="user in filteredListUsers"
+        :key="user.id"
+      >
+        {{ user.name }}
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script>
 export default {
-  props: ['renderTo', 'offset'],
+  emits: ['close'],
+  props: {
+    companies: {},
+    users: {},
+    company: {
+      type: Boolean,
+      default: false,
+    },
+    user: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      userPicked: false,
+      companyPicked: false,
+      filteredListCompanies: '',
+      filteredListUsers: '',
+    };
+  },
   methods: {
-    position() {},
+    setOutput(list, data) {
+      this.$store.commit(`${list}/setChoice`, data);
+      this.$emit('close');
+    },
+    listHandler(which) {
+      if (which === 'users') {
+        this.usersDropDown = !this.usersDropDown;
+      }
+      if (which === 'companies') {
+        this.companiesDropDown = !this.companiesDropDown;
+      }
+    },
+    filter(ev, list) {
+      console.log(ev);
+      console.log(list);
+      if (list === this.companies) {
+        this.filteredListCompanies = list.filter((l) =>
+          l.name.toUpperCase().match(ev)
+        );
+      } else {
+        this.filteredListUsers = list.filter((l) =>
+          l.name.toUpperCase().match(ev)
+        );
+      }
+    },
   },
-  mounted() {
-    console.log(this.offset.yOffset);
-    console.log(this.offset.parent);
-  },
+  computed: {},
 };
 </script>
 
@@ -42,5 +104,43 @@ export default {
 }
 .links li {
   color: #747474;
+  transition: 0.3s all;
+  padding: 0 ;
+}
+.links li:hover {
+  background-color: #3866dc;
+  color: white;
+}
+.links li:first-child:hover {
+  background-color: unset !important;
+  color: inherit !important;
+}
+textarea,
+input {
+  border: none;
+  border-bottom: 0px #d9d9d9 solid;
+  transition: 0.3s all;
+  color: #747474;
+  -webkit-appearance: none;
+  outline: none !important;
+}
+input {
+  width: fit-content;
+}
+textarea,
+input {
+  transition: none !important;
+}
+textarea:hover,
+input:hover {
+  border-bottom: 1px #d9d9d9 solid;
+}
+textarea:active,
+input:active {
+  border-bottom: 1px #d9d9d9 solid;
+}
+textarea:active,
+input:active {
+  border-bottom: 1px #d9d9d9 solid;
 }
 </style>

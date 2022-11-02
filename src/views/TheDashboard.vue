@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section @click="closeDropDownMenu">
     <base-app>
       <template #header>
         <the-header></the-header>
@@ -27,7 +27,7 @@ export default {
     BaseApp,
     TheHeader,
     TheNav,
-  },
+  }
 };
 </script>
 
