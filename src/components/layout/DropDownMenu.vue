@@ -57,7 +57,7 @@ export default {
       userPicked: false,
       companyPicked: false,
       filteredListCompanies: '',
-      filteredListUsers: '',
+      filteredListUsers: this.users,
     };
   },
   methods: {
@@ -74,8 +74,6 @@ export default {
       }
     },
     filter(ev, list) {
-      console.log(ev);
-      console.log(list);
       if (list === this.companies) {
         this.filteredListCompanies = list.filter((l) =>
           l.name.toUpperCase().match(ev)

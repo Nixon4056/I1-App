@@ -30,7 +30,7 @@ export default {};
   padding: 2%;
   display: grid;
   display: grid;
-  grid-template-columns: 1fr 0.8fr;
+  grid-template-columns: 1fr 0.6fr;
   grid-template-rows: 10% 1fr;
   gap: 0px 0px;
   grid-template-areas:

@@ -1,12 +1,7 @@
 <template>
   <div class="task">
     <header>
-      <div class="company">
-        <div>
-          <font-awesome-icon icon="fa-solid fa-industry" />
-        </div>
-        <h1>{{ company }}</h1>
-      </div>
+      <the-company :text="company"></the-company>
       <div class="date">
         <h3>za 2 dni</h3>
         <div class="dateTimer">
@@ -23,10 +18,10 @@
       </div>
       <div class="employee">
         <div>
-          <div>
+          <div :style="{backgroundColor: employee.color}">
             <font-awesome-icon icon="fa-solid fa-user" />
           </div>
-          <h1>{{ employee }}</h1>
+          <h1>{{ employee.name }}</h1>
         </div>
         <menu-btn link :destination="taskDetailsLink" />
         <!-- TOGGLE TASK DETAILS -->
@@ -49,8 +44,7 @@ export default {
       require: true,
     },
     employee: {
-      type: String,
-      default: 'error',
+      type: Object,
       require: true,
     },
     id: {
@@ -156,28 +150,7 @@ header {
   align-items: center;
   justify-content: space-between;
 }
-.company {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.company div {
-  padding: 5px;
-  display: flex;
-  width: fit-content;
-  align-items: center;
-  justify-content: center;
-  background-color: #37a735;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-.company h1 {
-  font-size: 0.7rem;
-  max-width: 120px;
-}
-.company div svg {
-  color: white;
-}
+
 .date {
   display: flex;
   align-items: center;

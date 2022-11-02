@@ -88,7 +88,6 @@ export default {
         employee:this.getChoiceUser,
         status: this.status
       })
-      console.log(this.$store.getters['tasks/tasks'])
     }
   },
   computed: {
