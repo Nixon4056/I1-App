@@ -59,7 +59,7 @@
         </div>
         <div class="row status">
           <h1>Status</h1>
-          <div>{{ task.status }}</div>
+          <div>{{ status }}</div>
         </div>
       </div>
     </template>
@@ -106,9 +106,20 @@ export default {
         description: this.selectedTask.description,
         employee: this.selectedTask.employee,
         date: this.selectedTask.date,
-        status: this.selectedTask.status,
+        status: this.selectedTask.status
       };
     },
+    status(){
+          if(this.task.status == 1){
+            return 'Przyjęto'
+          }else if(this.task.status == 2){
+            return 'W realizacji'
+          }else if(this.task.status == 3){
+            return 'zrealizowano'
+          }else{
+            return 'Odłożono'
+          }
+        },
   },
   created() {
     this.selectedTask = this.$store.getters['tasks/tasks'].find(
