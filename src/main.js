@@ -13,6 +13,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faUserSecret)
 library.add(faClock)
@@ -21,6 +22,7 @@ library.add(faUser)
 library.add(faBars)
 library.add(faXmark)
 library.add(faChevronDown)
+library.add(faEnvelope)
 
 //COMPONENTS
 import BaseKanban from './components/UI/BaseKanban.vue';
@@ -29,6 +31,9 @@ import BaseModal from './components/UI/BaseModal.vue';
 import BaseLogContainer from './components/UI/BaseLogContainer.vue';
 import TheTask from './components/tasks/TaskItem.vue';
 import ThePreTask from './components/tasks/PreTask.vue';
+
+//MODALS
+import UserModal from './components/layout/modals/UserModal.vue'; 
 
 //SIMPLE COMPONENTS
 import LoginBtn from './components/layout/TheLoginBtn.vue';
@@ -66,6 +71,7 @@ app.component('menu-btn', MenuBtn);
 app.component('dropdown-menu', DropDownMenu);
 app.component('the-company', TheCompany);
 app.component('user-plate', UserPlate);
+app.component('user-modal', UserModal);
 app.use(store);
 app.use(router);
 app.mount('#app');

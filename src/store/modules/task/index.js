@@ -18,6 +18,7 @@ export default {
             name: 'Mariusz Moszczyński',
             initials: 'MM',
             email: 'mariusz@informatyk1.pl',
+            standing: 'IT Specialist',
             color: '#3866DC',
             admin: false,
             kanbans: ['it', 'serwis', 'printers'],
@@ -66,6 +67,7 @@ export default {
             name: 'Mariusz Moszczyński',
             initials: 'MM',
             email: 'mariusz@informatyk1.pl',
+            standing: 'IT Specialist',
             color: '#3866DC',
             admin: false,
             kanbans: ['it', 'serwis', 'printers'],
@@ -114,6 +116,7 @@ export default {
             name: 'Nikodem Wicon',
             initials: 'NW',
             email: 'nikodem@informatyk1.pl',
+            standing: 'IT Manager',
             color: '#000000',
             admin: true,
             kanbans: ['it', 'serwis', 'printers'],
@@ -161,7 +164,8 @@ export default {
             id: 3424,
             name: 'Łukasz Grabowski',
             initials: 'ŁG',
-            email: 'nikodem@informatyk1.pl',
+            email: 'lukasz@informatyk1.pl',
+            standing: 'IT Specialist',
             color: '#38DCD2',
             admin: false,
             kanbans: ['it', 'serwis', 'printers'],
@@ -209,7 +213,8 @@ export default {
             id: 3425,
             name: 'Mateusz Koszałka',
             initials: 'MK',
-            email: 'nikodem@informatyk1.pl',
+            email: 'mateusz.koszalka@informatyk1.pl',
+            standing: 'IT Specialist',
             color: '#DC38D5',
             admin: false,
             kanbans: ['it', 'serwis', 'printers'],
@@ -233,8 +238,6 @@ export default {
       state.tasks.find((task) => task.id === payload.id).description = payload.newDescription
     },
     addComment(state, payload){
-      console.log(payload)
-      console.log(state.tasks.find((task) => task.id === payload.id))
       state.tasks.find((task) => task.id === payload.id).comments.push(payload.content);
     },
   },

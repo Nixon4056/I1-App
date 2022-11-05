@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <div class="plate" :class="{ plateHover: basic }">
+    <div
+      @mouseenter="showModal"
+      @mouseleave="hideModal"
+      class="plate"
+      :class="{ plateHover: basic }"
+    >
       <div :style="{ backgroundColor: employee.color }" class="initials">
         {{ employee.initials }}
       </div>
@@ -20,13 +25,21 @@
         <h3>{{ prop }}</h3>
       </div>
     </div>
+    <transition name="modal">
+      <user-modal
+        @mouseenter="modalEntered = true"
+        @mouseleave="hideModal"
+        v-if="modalIsVisible && basic"
+        :user="employee"
+      ></user-modal>
+    </transition>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    taskID:{
+    taskID: {
       type: Number,
       require: true,
       default: 0,
@@ -51,6 +64,8 @@ export default {
     return {
       commentContent: '',
       showSave: false,
+      modalIsVisible: false,
+      modalEntered: false,
     };
   },
   methods: {
@@ -65,6 +80,17 @@ export default {
       });
       this.commentContent = '';
     },
+    showModal() {
+      this.modalIsVisible = true;
+    },
+    hideModal() {
+      setTimeout(() => {
+        if(this.modalEntered === false){
+          this.modalIsVisible = false;
+        }
+        this.modalEntered = false;
+      }, 200);
+    },
   },
 };
 </script>
@@ -72,6 +98,7 @@ export default {
 <style scoped>
 .container {
   width: 100%;
+  position: relative;
 }
 .plate {
   display: flex;
@@ -116,5 +143,29 @@ h3 {
   outline: none !important;
   border: 1px #f3f3f3 solid;
   font-family: 'Poppins', sans-serif;
+}
+
+.modal-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.modal-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.modal-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.modal-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.modal-enter-to,
+.modal-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>

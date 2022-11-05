@@ -1,14 +1,21 @@
 <template>
   <div class="buttons__container">
-    <div @click="$emit('activeHandler', button.id)" :class="{ active: button.active }" class="button" v-for="button in buttons" :key="button">{{ button.text }}</div>
+    <div
+      @click="$emit('activeHandler', button.id)"
+      :class="{ active: button.active }"
+      class="button"
+      v-for="button in buttons"
+      :key="button"
+    >
+      {{ button.text }}
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  props:['buttons'],
-
-}
+  props: ['buttons'],
+};
 </script>
 
 <style scoped>
@@ -32,7 +39,7 @@ export default {
   background-color: #929292;
   color: white;
 }
-.active{
+.active {
   background-color: #929292;
   color: white;
 }
