@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     taskDetailsLink() {
-      return this.$route.path + '/task/' + this.id; //Task Details with ID
+      return this.$route.path + '/task_' + this.id; //Task Details with ID
     },
   },
 };

@@ -4,10 +4,63 @@ export default {
     return {
       tasks: [
         {
+          id: 0,
+          company: 'temp',
+          title: '',
+          description: 'Dodaj opis...',
+          comments: [
+          ],
+          logs: [
+
+          ],
+          employee: {
+            id: 3423,
+            name: 'Mariusz Moszczyński',
+            initials: 'MM',
+            email: 'mariusz@informatyk1.pl',
+            color: '#3866DC',
+            admin: false,
+            kanbans: ['it', 'serwis', 'printers'],
+          },
+          date: '0 Paź',
+          status: 1,
+        },
+        {
           id: 112,
           company: 'JKMed',
           title: 'Sprawdzenie danych',
           description: 'Dodaj opis...',
+          comments: [
+            {
+              employee: 3422,
+              text: 'Testowy Komentarz',
+              date: '21 Paź'
+            },
+            {
+              employee: 3424,
+              text: 'Testowy Komentarz2',
+              date: '21 Paź'
+            },
+            {
+              employee: 3424,
+              text: 'Testowy Komentarz3',
+              date: '21 Paź'
+            },
+            {
+              employee: 3425,
+              text: 'Testowy Komentarz4',
+              date: '21 Paź'
+            },
+          ],
+          logs: [
+            {
+              employee: 3424,
+              text: 'utworzył(a) zlecenie',
+              date: '21 Paź',
+              before: 'Brak',
+              after: 'Nowe zlecenie'
+            },
+          ],
           employee: {
             id: 3423,
             name: 'Mariusz Moszczyński',
@@ -25,6 +78,37 @@ export default {
           company: 'Kornix Wejherowo',
           title: 'Problem z Drukarką',
           description: 'Dodaj opis...',
+          comments: [
+            {
+              employee: 3422,
+              text: 'Testowy Komentarz',
+              date: '21 Paź'
+            },
+            {
+              employee: 3424,
+              text: 'Testowy Komentarz2',
+              date: '21 Paź'
+            },
+            {
+              employee: 3424,
+              text: 'Testowy Komentarz3',
+              date: '21 Paź'
+            },
+            {
+              employee: 3425,
+              text: 'Testowy Komentarz4',
+              date: '21 Paź'
+            },
+          ],
+          logs: [
+            {
+              employee: 3424,
+              text: 'utworzył(a) zlecenie',
+              date: '21 Paź',
+              before: 'Brak',
+              after: 'Nowe zlecenie'
+            },
+          ],
           employee: {
             id: 3422,
             name: 'Nikodem Wicon',
@@ -42,6 +126,37 @@ export default {
           company: 'Cristap',
           title: 'Problem z WiFi',
           description: 'Dodaj opis...',
+          comments: [
+            {
+              employee: 3422,
+              text: 'Testowy Komentarz',
+              date: '21 Paź'
+            },
+            {
+              employee: 3424,
+              text: 'Testowy Komentarz2',
+              date: '21 Paź'
+            },
+            {
+              employee: 3424,
+              text: 'Testowy Komentarz3',
+              date: '21 Paź'
+            },
+            {
+              employee: 3425,
+              text: 'Testowy Komentarz4',
+              date: '21 Paź'
+            },
+          ],
+          logs: [
+            {
+              employee: 3424,
+              text: 'utworzył(a) zlecenie',
+              date: '21 Paź',
+              before: 'Brak',
+              after: 'Nowe zlecenie'
+            },
+          ],
           employee: {
             id: 3424,
             name: 'Łukasz Grabowski',
@@ -59,6 +174,37 @@ export default {
           company: 'PIW',
           title: 'Problem z WiFi',
           description: 'Dodaj opis...',
+          comments: [
+            {
+              employee: 3422,
+              text: 'Testowy Komentarz',
+              date: '21 Paź'
+            },
+            {
+              employee: 3424,
+              text: 'Testowy Komentarz2',
+              date: '21 Paź'
+            },
+            {
+              employee: 3424,
+              text: 'Testowy Komentarz3',
+              date: '21 Paź'
+            },
+            {
+              employee: 3425,
+              text: 'Testowy Komentarz4',
+              date: '21 Paź'
+            },
+          ],
+          logs: [
+            {
+              employee: 3424,
+              text: 'utworzył(a) zlecenie',
+              date: '21 Paź',
+              before: 'Brak',
+              after: 'Nowe zlecenie'
+            },
+          ],
           employee: {
             id: 3425,
             name: 'Mateusz Koszałka',
@@ -85,7 +231,12 @@ export default {
     },
     changeDescription(state, payload){
       state.tasks.find((task) => task.id === payload.id).description = payload.newDescription
-    }
+    },
+    addComment(state, payload){
+      console.log(payload)
+      console.log(state.tasks.find((task) => task.id === payload.id))
+      state.tasks.find((task) => task.id === payload.id).comments.push(payload.content);
+    },
   },
   actions: {
     addTask(context, payload){

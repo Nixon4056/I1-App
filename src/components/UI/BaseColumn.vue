@@ -6,7 +6,7 @@
     </header>
     <div class="task__container">
       <slot></slot>
-      <pre-task @closeTask="hide" v-if="opened"></pre-task>
+      <pre-task v-if="opened" @closeTask="hide"></pre-task>
     </div>
     <div class="adder">
       <btn-add v-if="title === 'PRZYJĘTO'" @click="open"></btn-add>
@@ -29,7 +29,7 @@ export default {
     hide(){
       this.opened = false
     }
-  }
+  },
 };
 </script>
 

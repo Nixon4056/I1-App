@@ -37,9 +37,11 @@
       </div>
       <div class="sub__task__adder inner1Section">
         <h1>Zlecenia dodatkowe</h1>
+        <!-- <base-subtasks-container></base-subtasks-container> -->
       </div>
       <div class="sub__task__adder inner1Section">
         <h1>Aktywność</h1>
+        <base-log-container :task="task"></base-log-container>
       </div>
     </template>
     <template #inner2>
@@ -47,11 +49,11 @@
       <div class="details">
         <div class="row responsible">
           <h1>Osoba przypisana</h1>
-          <div>{{ task.employee.name }}</div>
+          <user-plate basic :employee="task.employee"></user-plate>
         </div>
         <div class="row user">
           <h1>Osoba zgłaszająca</h1>
-          <div>{{ task.employee.name }}</div>
+          <user-plate basic :employee="task.employee"></user-plate>
         </div>
         <div class="row date">
           <h1>Termin</h1>
@@ -106,7 +108,9 @@ export default {
         description: this.selectedTask.description,
         employee: this.selectedTask.employee,
         date: this.selectedTask.date,
-        status: this.selectedTask.status
+        status: this.selectedTask.status,
+        comments: this.selectedTask.comments,
+        logs: this.selectedTask.logs,
       };
     },
     status(){
@@ -142,6 +146,9 @@ export default {
 .description {
   margin: 1rem 0;
 }
+.inner1Section{
+  margin: 1rem 0;
+}
 .inner1Section h1 {
   font-size: 1rem;
   max-width: 100%;
@@ -161,7 +168,6 @@ export default {
   margin: 0 -0.5rem;
   padding: 0.2rem 0.5rem;
   border-radius: 3px;
-
   cursor: pointer;
 }
 .descriptionHandler h1 {

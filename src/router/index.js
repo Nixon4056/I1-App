@@ -32,7 +32,7 @@ const routes = [
         component: TheIt,
         props: true,
         children: [
-          { path: 'task/:id', name: 'taskModal', component: TaskModal, props: true, }
+          { path: 'task_:id', name: 'taskModal', component: TaskModal, props: true, }
         ]
       },
       {
