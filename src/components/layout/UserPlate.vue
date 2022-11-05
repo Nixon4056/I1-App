@@ -85,11 +85,11 @@ export default {
     },
     hideModal() {
       setTimeout(() => {
-        if(this.modalEntered === false){
+        if (this.modalEntered === false) {
           this.modalIsVisible = false;
         }
         this.modalEntered = false;
-      }, 200);
+      }, 300);
     },
   },
 };
@@ -147,12 +147,12 @@ h3 {
 
 .modal-enter-from {
   opacity: 0;
-  transform: translateY(-30px);
+  transform: translateY(30px);
 }
 
 .modal-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(-30px);
 }
 
 .modal-enter-active {

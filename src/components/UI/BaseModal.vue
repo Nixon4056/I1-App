@@ -37,6 +37,7 @@ export default {};
     'header header'
     '. .';
   overflow: hidden;
+  box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .inner1{
   overflow-y: scroll;

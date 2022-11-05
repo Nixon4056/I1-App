@@ -4,30 +4,7 @@ export default {
     return {
       tasks: [
         {
-          id: 0,
-          company: 'temp',
-          title: '',
-          description: 'Dodaj opis...',
-          comments: [
-          ],
-          logs: [
-
-          ],
-          employee: {
-            id: 3423,
-            name: 'Mariusz Moszczyński',
-            initials: 'MM',
-            email: 'mariusz@informatyk1.pl',
-            standing: 'IT Specialist',
-            color: '#3866DC',
-            admin: false,
-            kanbans: ['it', 'serwis', 'printers'],
-          },
-          date: '0 Paź',
-          status: 1,
-        },
-        {
-          id: 112,
+          id: 1,
           company: 'JKMed',
           title: 'Sprawdzenie danych',
           description: 'Dodaj opis...',
@@ -76,7 +53,7 @@ export default {
           status: 1,
         },
         {
-          id: 113,
+          id: 2,
           company: 'Kornix Wejherowo',
           title: 'Problem z Drukarką',
           description: 'Dodaj opis...',
@@ -125,7 +102,7 @@ export default {
           status: 1,
         },
         {
-          id: 114,
+          id: 3,
           company: 'Cristap',
           title: 'Problem z WiFi',
           description: 'Dodaj opis...',
@@ -174,7 +151,7 @@ export default {
           status: 2,
         },
         {
-          id: 115,
+          id: 4,
           company: 'PIW',
           title: 'Problem z WiFi',
           description: 'Dodaj opis...',

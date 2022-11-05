@@ -55,6 +55,18 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+  border: .5px #f3f3f3 solid;
+  overflow: hidden;
+}
+a{
+  transition: 0.3s color;
+}
+a:hover{
+  color: #929292;
+  text-decoration: underline
+;
 }
 .box {
   width: 100%;
@@ -85,6 +97,7 @@ h1{
   position: absolute;
   left: 5%;
   top: 10%;
+  min-width: 120px;
   padding: 20px;
   aspect-ratio: 1/1;
   color: white;
