@@ -41,17 +41,21 @@ export default {
   data() {
     return {
       taskIsAdding: false,
-      tasks: [],
       users: [],
       columns: [],
     };
   },
   methods: {
+    loadTasks(){
+      this.$store.dispatch('tasks/loadTasks');
+    },
     filteredEmployee(id){
-      return this.users.find((user) => user.id === id)
+      const users = this.users = this.$store.getters['users/getUsers'];
+      return users.find((user) => user.id === id)
     },
     filteredTasks(status) {
-      return this.tasks.filter((task) => {
+      const tasks = this.$store.getters['tasks/tasks']; //LOAD TASKS
+      return tasks.filter((task) => {
         if (task.status === status) {
           return true;
         }
@@ -73,14 +77,18 @@ export default {
       event.dataTransfer.setData('itemId', item.id);
     },
     onDrop(event, status) {
-      const itemId = event.dataTransfer.getData('itemId');
-      const item = this.tasks.find((task) => task.id == itemId);
+      const itemId = parseInt(event.dataTransfer.getData('itemId'));
+      const tasks = this.$store.getters['tasks/tasks'];
+      const item = tasks.find((task) => task.id === itemId);
       item.status = status;
+      this.$store.dispatch('tasks/changeTaskProperty', {
+        id: itemId,
+        status: status
+      })
     },
   },
   created() {
-    this.users = this.$store.getters['users/getUsers'];
-    this.tasks = this.$store.getters['tasks/tasks'];
+    this.loadTasks() //FIREBASE FETCH
     this.columns = this.$store.getters['columns/columns'];
   },
 };

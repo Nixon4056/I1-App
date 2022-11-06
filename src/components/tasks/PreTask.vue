@@ -37,9 +37,7 @@
           placeholder="Opis"
           v-model="title"
         ></textarea>
-        <p class="invalid__p" v-if="titleValidity === 'invalid'">
-          Wpisz opis!
-        </p>
+        <p class="invalid__p" v-if="titleValidity === 'invalid'">Wpisz opis!</p>
       </div>
       <div class="employee">
         <div class="choose__user" @click="listHandler('users')">
@@ -80,6 +78,9 @@ export default {
     };
   },
   methods: {
+    loadTasks(){
+      this.$store.dispatch('tasks/loadTasks');
+    },
     listHandler(which) {
       if (which === 'users') {
         this.userPicked = true;
@@ -91,18 +92,20 @@ export default {
       }
     },
     addTask() {
-      this.validateInput()
-      if ((this.userPicked && this.companyPicked) && this.title) {
+      this.validateInput();
+      if (this.userPicked && this.companyPicked && this.title) {
         this.$emit('closeTask');
-        this.$store.dispatch('tasks/addTask', {
+        const task = {
           company: this.getChoiceCompany.name,
           title: this.title,
           employee: this.getChoiceUser.id,
           status: this.status,
-        });
-      }else{
-        console.log('error w dodawaniu taska (validate INPUT)')
+        };
+        this.$store.dispatch('tasks/addTask', task);
+      } else {
+        console.log('error w dodawaniu taska (validate INPUT)');
       }
+      this.loadTasks()
     },
     validateInput() {
       if (this.titleInput === '') {

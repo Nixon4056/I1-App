@@ -16,6 +16,7 @@
     "@mdi/font": "5.9.55",
     "@popperjs/core": "^2.11.6",
     "core-js": "^3.8.3",
+    "pg": "^8.8.0",
     "roboto-fontface": "*",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
@@ -35,5 +36,18 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3"
-  }
+  },
+  "description": "```\r npm install\r ```",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nixon4056/I1-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nixon4056/I1-App/issues"
+  },
+  "homepage": "https://github.com/Nixon4056/I1-App#readme"
 }
