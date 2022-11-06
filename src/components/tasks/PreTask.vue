@@ -100,6 +100,13 @@ export default {
           title: this.title,
           employee: this.getChoiceUser.id,
           status: this.status,
+          logs: [
+            {
+              id: Date.now(),
+              employee: this.getChoiceUser.id,
+              text: `${this.getChoiceUser.name} utworzył(a) zlecenie`,
+            }
+          ]
         };
         this.$store.dispatch('tasks/addTask', task);
       } else {

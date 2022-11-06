@@ -39,6 +39,7 @@ export default {
   max-width: 500px;
   min-width: 250px;
   height: auto;
+  min-height: 400px;
   background-color: #f3f3f3;
   color: #747474;
   border-radius: 10px;
@@ -47,7 +48,7 @@ export default {
   margin: 0 5px;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: top;
   flex-direction: column;
 }
 header {

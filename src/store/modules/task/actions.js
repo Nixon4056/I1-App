@@ -12,7 +12,7 @@ export default {
       date: '21 Gru',
       status: payload.status,
       comments: [],
-      logs: [],
+      logs: payload.logs,
     };
 
     const response = await fetch(
