@@ -6,11 +6,11 @@
       class="plate"
       :class="{ plateHover: basic }"
     >
-      <div :style="{ backgroundColor: employee.color }" class="initials">
-        {{ employee.initials }}
+      <div :style="{ backgroundColor: filteredEmployee(employee).color }" class="initials">
+        {{ filteredEmployee(employee).initials }}
       </div>
       <div v-if="!contentAdd" class="user">
-        <h1>{{ employee.name }}</h1>
+        <h1>{{ filteredEmployee(employee).name }}</h1>
       </div>
       <div v-else class="addContent">
         <textarea
@@ -30,7 +30,7 @@
         @mouseenter="modalEntered = true"
         @mouseleave="hideModal"
         v-if="modalIsVisible && basic"
-        :user="employee"
+        :user="filteredEmployee(employee)"
       ></user-modal>
     </transition>
   </div>
@@ -45,7 +45,7 @@ export default {
       default: 0,
     },
     employee: {
-      type: Object,
+      type: Number,
     },
     prop: {
       type: String,
@@ -62,6 +62,7 @@ export default {
   },
   data() {
     return {
+      users: [],
       commentContent: '',
       showSave: false,
       modalIsVisible: false,
@@ -69,6 +70,9 @@ export default {
     };
   },
   methods: {
+    filteredEmployee(id){
+      return this.users.find((user) => user.id === id)
+    },
     addComment() {
       this.$store.commit('tasks/addComment', {
         id: this.taskID,
@@ -91,6 +95,9 @@ export default {
         this.modalEntered = false;
       }, 300);
     },
+  },
+  created() {
+    this.users = this.$store.getters['users/getUsers'];
   },
 };
 </script>

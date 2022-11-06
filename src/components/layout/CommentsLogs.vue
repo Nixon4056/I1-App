@@ -5,7 +5,7 @@
       <user-plate
         :taskID="task.id"
         contentAdd
-        :employee="getEmployeeByID(task.employee.id)"
+        :employee="getEmployeeByID(task.employee)"
       ></user-plate>
       <div class="comment" v-for="comment in task.comments" :key="comment.id">
         <user-plate
@@ -75,7 +75,7 @@ export default {
   methods: {
     getEmployeeByID(id) {
       const users = this.$store.getters['users/getUsers'];
-      return users.find((user) => user.id === id);
+      return users.find((user) => user.id === id).id;
     },
   },
 };

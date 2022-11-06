@@ -22,7 +22,7 @@
             :id="task.id"
             :company="task.company"
             :title="task.title"
-            :employee="task.employee"
+            :employee="filteredEmployee(task.employee)"
           >
           </the-task>
         </base-column>
@@ -42,10 +42,14 @@ export default {
     return {
       taskIsAdding: false,
       tasks: [],
+      users: [],
       columns: [],
     };
   },
   methods: {
+    filteredEmployee(id){
+      return this.users.find((user) => user.id === id)
+    },
     filteredTasks(status) {
       return this.tasks.filter((task) => {
         if (task.status === status) {
@@ -75,6 +79,7 @@ export default {
     },
   },
   created() {
+    this.users = this.$store.getters['users/getUsers'];
     this.tasks = this.$store.getters['tasks/tasks'];
     this.columns = this.$store.getters['columns/columns'];
   },

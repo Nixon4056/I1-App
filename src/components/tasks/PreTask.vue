@@ -85,7 +85,7 @@ export default {
       this.$store.dispatch('tasks/addTask', {
         company: this.getChoiceCompany.name,
         title: this.title,
-        employee:this.getChoiceUser,
+        employee:this.getChoiceUser.id,
         status: this.status
       })
     }
