@@ -3,10 +3,16 @@
     <ul class="links">
       <li>
         <input
+          :class="{ invalid: companyValidity === 'invalid' }"
+          @blur="validateInput"
+          v-model="companyInput"
           @input="filter($event.target.value.toUpperCase(), companies)"
           placeholder="Wpisz nazwe firmy"
           type="text"
         />
+        <p class="invalid__p" v-if="companyValidity === 'invalid'">
+          Wpisz conajmniej 1 litere!
+        </p>
       </li>
       <li
         @click="setOutput('companies', company)"
@@ -21,10 +27,16 @@
     <ul class="links">
       <li>
         <input
+          :class="{ invalid: companyValidity === 'invalid' }"
+          @blur="validateInput"
+          v-model="userInput"
           @input="filter($event.target.value.toUpperCase(), users)"
           placeholder="Wpisz Usera"
           type="text"
         />
+        <p class="invalid__p" v-if="companyValidity === 'invalid'">
+          Wpisz conajmniej 1 litere!
+        </p>
       </li>
       <li
         @click="setOutput('users', user)"
@@ -54,10 +66,12 @@ export default {
   },
   data() {
     return {
-      userPicked: false,
-      companyPicked: false,
       filteredListCompanies: '',
       filteredListUsers: this.users,
+      companyInput: '',
+      companyValidity: 'pending',
+      userInput: '',
+      userValidity: 'pending',
     };
   },
   methods: {
@@ -84,8 +98,19 @@ export default {
         );
       }
     },
+    validateInput() {
+      if (this.companyInput === '') {
+        this.companyValidity = 'invalid';
+      } else {
+        this.companyValidity = 'valid';
+      }
+      if (this.userInput === '') {
+        this.userValidity = 'invalid';
+      } else {
+        this.userValidity = 'valid';
+      }
+    },
   },
-  computed: {},
 };
 </script>
 
@@ -103,7 +128,7 @@ export default {
 .links li {
   color: #747474;
   transition: 0.3s all;
-  padding: 0 ;
+  padding: 0;
 }
 .links li:hover {
   background-color: #3866dc;
@@ -140,5 +165,13 @@ input:active {
 textarea:active,
 input:active {
   border-bottom: 1px #d9d9d9 solid;
+}
+.invalid {
+  border-bottom: 1px solid red !important;
+  color: red !important;
+}
+.invalid__p {
+  font-size: 0.6rem;
+  color: red !important;
 }
 </style>

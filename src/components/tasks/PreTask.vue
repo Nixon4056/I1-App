@@ -8,7 +8,6 @@
         <h1>{{ getChoiceCompany.name }}</h1>
         <font-awesome-icon
           :class="{ rotated: companiesDropDown }"
-          @click="companyPicked = false"
           class="arrowDown"
           icon="fa-solid fa-chevron-down"
         />
@@ -29,6 +28,8 @@
     <section>
       <div class="description__prepared">
         <textarea
+          :class="{ invalid: titleValidity === 'invalid' }"
+          @blur="validateInput"
           name="title"
           id="title"
           cols="30"
@@ -36,10 +37,13 @@
           placeholder="Opis"
           v-model="title"
         ></textarea>
+        <p class="invalid__p" v-if="titleValidity === 'invalid'">
+          Wpisz opis!
+        </p>
       </div>
       <div class="employee">
         <div class="choose__user" @click="listHandler('users')">
-          <div :style="{backgroundColor : getChoiceUser.color}">
+          <div :style="{ backgroundColor: getChoiceUser.color }">
             <font-awesome-icon icon="fa-solid fa-user" />
           </div>
           <h1>{{ getChoiceUser.name }}</h1>
@@ -65,30 +69,48 @@
 export default {
   data() {
     return {
-      companiesDropDown: false,
-      usersDropDown: false,
+      companyPicked: false,
+      userPicked: false,
+      companiesDropDown: true,
+      usersDropDown: true,
       title: '',
       status: 1,
+      titleInput: '',
+      titleValidity: 'pending',
     };
   },
   methods: {
     listHandler(which) {
       if (which === 'users') {
+        this.userPicked = true;
         this.usersDropDown = !this.usersDropDown;
       }
       if (which === 'companies') {
+        this.companyPicked = true;
         this.companiesDropDown = !this.companiesDropDown;
       }
     },
-    addTask(){
-      this.$emit('closeTask')
-      this.$store.dispatch('tasks/addTask', {
-        company: this.getChoiceCompany.name,
-        title: this.title,
-        employee:this.getChoiceUser.id,
-        status: this.status
-      })
-    }
+    addTask() {
+      this.validateInput()
+      if ((this.userPicked && this.companyPicked) && this.title) {
+        this.$emit('closeTask');
+        this.$store.dispatch('tasks/addTask', {
+          company: this.getChoiceCompany.name,
+          title: this.title,
+          employee: this.getChoiceUser.id,
+          status: this.status,
+        });
+      }else{
+        console.log('error w dodawaniu taska (validate INPUT)')
+      }
+    },
+    validateInput() {
+      if (this.titleInput === '') {
+        this.titleValidity = 'invalid';
+      } else {
+        this.titleValidity = 'valid';
+      }
+    },
   },
   computed: {
     getChoiceUser() {
@@ -297,5 +319,13 @@ section {
 }
 .rotated {
   rotate: 180deg;
+}
+.invalid {
+  border-bottom: 1px solid red !important;
+  color: red !important;
+}
+.invalid__p {
+  font-size: 0.6rem;
+  color: red !important;
 }
 </style>
