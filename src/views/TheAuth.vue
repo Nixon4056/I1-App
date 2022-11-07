@@ -53,7 +53,7 @@ export default {
  display: flex;
  align-items: center;
  justify-content: left;
- padding: 0 8rem;
+ padding: 0 10%;
  width: 100%;
  height: 100vh;
  position: relative;
@@ -61,7 +61,7 @@ export default {
 }
 .modal {
  padding: 3rem 2rem;
- min-height: 60%;
+ min-height: 70%;
  display: flex;
  align-items: center;
  justify-content: top;
@@ -125,7 +125,7 @@ input::placeholder {
  transform: translateX(3px);
 }
 .login__btn h1 {
- font-size: 1rem;
+ font-size: .8rem;
  font-weight: 500;
 }
 .google_auth {
