@@ -18,5 +18,7 @@ export default {};
 </script>
 
 <style scoped>
-
+svg{
+    transition: 0.3s all;
+}
 </style>

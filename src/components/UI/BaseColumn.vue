@@ -39,7 +39,7 @@ export default {
   max-width: 500px;
   min-width: 250px;
   height: auto;
-  min-height: 400px;
+  min-height: 100px;
   background-color: #f3f3f3;
   color: #747474;
   border-radius: 10px;
