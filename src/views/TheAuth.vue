@@ -61,7 +61,7 @@ export default {
 }
 .modal {
  padding: 3rem 2rem;
- min-height: 60%;
+ height: 70%;
  display: flex;
  align-items: center;
  justify-content: top;
@@ -69,7 +69,7 @@ export default {
  background-color: rgba(255, 255, 255, 0.7);
  gap: 20px;
  z-index: 10;
- border-radius: 15px;
+ border-radius: 17px;
  border-width: 0px 1px 1px 0px;
  border-style: solid;
  border-color: #ffffff;
@@ -125,7 +125,7 @@ input::placeholder {
  transform: translateX(3px);
 }
 .login__btn h1 {
- font-size: 1rem;
+ font-size: .8rem;
  font-weight: 500;
 }
 .google_auth {
