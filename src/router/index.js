@@ -5,9 +5,10 @@ import ThePrinters from '../views/ThePrinters.vue'
 import TheSerwice from '../views/TheSerwice.vue'
 import TheIt from '../views/TheIt.vue'
 import TheDocs from '../views/TheDocs.vue'
-import TheRegister from '../views/TheRegister.vue'
 
 import TaskModal from '../components/tasks/TaskModal.vue';
+import LoginModal from '../components/layout/modals/LoginModal.vue';
+import RegisterModal from '../components/layout/modals/registerModal.vue'
 
 const routes = [
   { path: '/', redirect: '/dashboard'},
@@ -48,14 +49,11 @@ const routes = [
     name: 'auth',
     props: true,
     component: TheAuth,
+    children: [
+      { path: 'login', name: 'login', component: LoginModal,},
+      { path: 'register', name: 'register', component: RegisterModal,},
+    ]
   },
-  {
-    path: '/register',
-    name: 'register',
-    props: true,
-    component: TheRegister,
-  },
-  
 ]
 
 const router = createRouter({
