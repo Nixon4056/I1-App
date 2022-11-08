@@ -1,5 +1,5 @@
 <template>
-  <div class="buttons__container">
+  <div class="buttons__container" :style="{justifyContent : align}">
     <div
       @click="$emit('activeHandler', button.id)"
       :class="{ active: button.active }"
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  props: ['buttons'],
+  props: ['buttons', 'align'],
 };
 </script>
 

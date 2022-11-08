@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import TheDashboard from '../views/TheDashboard.vue'
+import NotFound from '../views/NotFound.vue'
 import TheAuth from '../views/TheAuth.vue'
 import ThePrinters from '../views/ThePrinters.vue'
 import TheSerwice from '../views/TheSerwice.vue'
@@ -12,7 +13,11 @@ import RegisterModal from '../components/layout/modals/registerModal.vue'
 
 const routes = [
   { path: '/', redirect: '/dashboard'},
-  { path: '/:notFound(.*)', redirect: '/dashboard' },
+  { 
+    path: '/:notFound(.*)', 
+    name: 'notFound',
+    component: NotFound,
+  },
   {
     path: '/dashboard',
     name: 'dashboard',
@@ -47,6 +52,7 @@ const routes = [
   {
     path: '/auth',
     name: 'auth',
+    redirect: '/auth/login',
     props: true,
     component: TheAuth,
     children: [
