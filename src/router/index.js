@@ -5,6 +5,7 @@ import ThePrinters from '../views/ThePrinters.vue'
 import TheSerwice from '../views/TheSerwice.vue'
 import TheIt from '../views/TheIt.vue'
 import TheDocs from '../views/TheDocs.vue'
+import TheRegister from '../views/TheRegister.vue'
 
 import TaskModal from '../components/tasks/TaskModal.vue';
 
@@ -45,7 +46,14 @@ const routes = [
   {
     path: '/auth',
     name: 'auth',
-    component: TheAuth
+    props: true,
+    component: TheAuth,
+  },
+  {
+    path: '/register',
+    name: 'register',
+    props: true,
+    component: TheRegister,
   },
   
 ]

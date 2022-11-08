@@ -68,7 +68,24 @@ export default {
     setChoice(state, payload) {
       state.choice = payload;
     },
+    register(state, payload){
+      state.users.push(payload);
+    }
   },
-  actions: {},
+  actions: {
+    register(context, data){
+      const userData = {
+        id: data.id,
+        name: data.name,
+        initials: data.initials,
+        email: data.email,
+        standing: data.standing,
+        color: data.color,
+        admin: data.admin,
+        kanbans: data.kanbans,
+      }
+      context.commit('register', userData)
+    }
+  },
   modules: {},
 };
