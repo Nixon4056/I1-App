@@ -74,10 +74,11 @@ export default {
       return this.users.find((user) => user.id === id)
     },
     addComment() {
-      this.$store.commit('tasks/addComment', {
+      this.$store.dispatch('tasks/addComment', {
         id: this.taskID,
-        content: {
-          employee: 3422,
+        comment: {
+          id: Date.now(),
+          employee: this.employee,
           text: this.commentContent,
           date: '5 Lis',
         },

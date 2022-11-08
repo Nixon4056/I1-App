@@ -9,6 +9,7 @@
       ></user-plate>
       <div class="comment" v-for="comment in task.comments" :key="comment.id">
         <user-plate
+          v-if="comment.id"
           :employee="getEmployeeByID(comment.employee)"
           :prop="comment.date"
         ></user-plate>
@@ -32,6 +33,7 @@
       <div class="comments">
         <div class="comment" v-for="comment in task.comments" :key="comment.id">
           <user-plate
+            v-if="comment.id"
             :employee="getEmployeeByID(comment.employee)"
             :prop="comment.date"
           ></user-plate>

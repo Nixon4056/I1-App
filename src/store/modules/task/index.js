@@ -23,12 +23,10 @@ export default {
     },
     changeDescription(state, payload) {
       state.tasks.find((task) => task.id === payload.id).description =
-        payload.newDescription;
+        payload.description;
     },
     addComment(state, payload) {
-      state.tasks
-        .find((task) => task.id === payload.id)
-        .comments.push(payload.content);
+      state.tasks.find((task) => task.id === payload.id).comments.push(payload.comment);
     },
   },
   actions: actions,

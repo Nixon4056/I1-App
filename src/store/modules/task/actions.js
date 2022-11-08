@@ -1,7 +1,5 @@
 export default {
   async addTask(context, payload) {
-    const tasks = context.getters.tasks;
-    console.log(tasks);
     const id = Date.now();
     const data = {
       id: id,
@@ -11,7 +9,7 @@ export default {
       employee: payload.employee,
       date: '21 Gru',
       status: payload.status,
-      comments: [],
+      comments: payload.comments,
       logs: payload.logs,
     };
 
@@ -30,8 +28,7 @@ export default {
     }
 
     context.commit('addTask', {
-      ...data,
-      id: data.id,
+      ...data
     });
   },
   async loadTasks(context) {
@@ -60,7 +57,7 @@ export default {
     }
     context.commit('setTasks', tasks);
   },
-  async changeTaskProperty(context, payload){
+  async changeStatus(context, payload){
     const task = payload
     const response = await fetch(
       `https://i1-app-default-rtdb.europe-west1.firebasedatabase.app/tasks/${task.id}/status.json`,
@@ -71,8 +68,43 @@ export default {
     );
     if (!response.ok) {
       console.log('error in add Task');
+    }else{
+      console.log(`zmieniono status na: ${task.status}`)
     }
-
     context.commit('changeStatus', task);
-  }
+  },
+  async changeDescription(context, payload){
+    const task = payload
+    const response = await fetch(
+      `https://i1-app-default-rtdb.europe-west1.firebasedatabase.app/tasks/${task.id}/description.json`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(task.description),
+      }
+    );
+    if (!response.ok) {
+      console.log('error in add Task');
+    }else{
+      console.log(`dodano komentarz: ${task.description}`)
+    }
+    context.commit('changeDescription', task);
+  },
+  async addComment(context, payload){
+    const task = payload
+    const response = await fetch(
+      `https://i1-app-default-rtdb.europe-west1.firebasedatabase.app/tasks/${task.id}/comments/${task.comment.id}.json`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(task.comment),
+      }
+    );
+    if (!response.ok) {
+      console.log('error in add Task');
+    }else{
+      console.log(`dodano komentarz: ${task.comment.text}`)
+    }
+    context.commit('addComment', {
+      ...task
+    });
+  },
 };

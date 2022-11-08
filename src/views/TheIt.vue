@@ -46,11 +46,12 @@ export default {
     };
   },
   methods: {
-    loadTasks(){
+    loadUsersAndTasks(){
+      this.$store.dispatch('users/loadUsers');
       this.$store.dispatch('tasks/loadTasks');
     },
     filteredEmployee(id){
-      const users = this.users = this.$store.getters['users/getUsers'];
+      const users = this.$store.getters['users/getUsers'];
       return users.find((user) => user.id === id)
     },
     filteredTasks(status) {
@@ -81,14 +82,16 @@ export default {
       const tasks = this.$store.getters['tasks/tasks'];
       const item = tasks.find((task) => task.id === itemId);
       item.status = status;
-      this.$store.dispatch('tasks/changeTaskProperty', {
+      this.$store.dispatch('tasks/changeStatus', {
         id: itemId,
         status: status
       })
     },
   },
   created() {
-    this.loadTasks() //FIREBASE FETCH
+    this.loadUsersAndTasks();
+    /* this.loadUsers(); //FIREBASE FETCH users always first!
+    this.loadTasks(); //FIREBASE FETCH tasks */
     this.columns = this.$store.getters['columns/columns'];
   },
 };

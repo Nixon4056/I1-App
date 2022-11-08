@@ -162,7 +162,7 @@ export default {
     kanbans: ["dashboard"],
    };
    this.$store.dispatch("users/register", data);
-   this.$router.replace("login");
+   this.$router.replace("/auth/login");
   },
  },
 };

@@ -3,7 +3,7 @@
       <user-icon></user-icon>
       <h2>Mateusz Koszałka</h2>
     </div>
-    <login-btn></login-btn>
+    <router-link to="/auth"><login-btn></login-btn></router-link>
 </template>
 
 <script>

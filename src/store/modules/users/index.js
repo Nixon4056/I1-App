@@ -13,7 +13,7 @@ export default {
         kanbans: ['it', 'serwis', 'printers'],
       },
       users: [
-        {
+/*         {
           id: 3422,
           name: 'Nikodem Wicon',
           initials: 'NW',
@@ -52,7 +52,7 @@ export default {
           color: '#DC38D5',
           admin: false,
           kanbans: ['it', 'serwis', 'printers'],
-        },
+        }, */
       ],
     };
   },
@@ -68,12 +68,15 @@ export default {
     setChoice(state, payload) {
       state.choice = payload;
     },
-    register(state, payload){
+    register(state, payload) {
       state.users.push(payload);
-    }
+    },
+    setUsers(state, payload) {
+      state.users = payload;
+    },
   },
   actions: {
-    register(context, data){
+    async register(context, data) {
       const userData = {
         id: data.id,
         name: data.name,
@@ -83,9 +86,51 @@ export default {
         color: data.color,
         admin: data.admin,
         kanbans: data.kanbans,
+      };
+      const response = await fetch(
+        `https://i1-app-default-rtdb.europe-west1.firebasedatabase.app/users/${userData.id}.json`,
+        {
+          method: 'PUT',
+          body: JSON.stringify(userData),
+        }
+      );
+
+      /* const responseData = await response.json(); */
+
+      if (!response.ok) {
+        console.log('error to add user');
       }
-      context.commit('register', userData)
-    }
+
+      context.commit('register', {
+        ...userData,
+      });
+    },
+    async loadUsers(context) {
+      const response = await fetch(
+        `https://i1-app-default-rtdb.europe-west1.firebasedatabase.app/users.json`
+      );
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        console.log('error fetching users');
+      }
+
+      const users = [];
+      for (const key in responseData) {
+        const user = {
+          id: parseInt(key),
+          name: responseData[key].name,
+          initials: responseData[key].initials,
+          email: responseData[key].email,
+          standing: responseData[key].standing,
+          color: responseData[key].color,
+          admin: responseData[key].admin,
+          kanbans: responseData[key].kanbans,
+        };
+        users.push(user);
+      }
+      context.commit('setUsers', users);
+    },
   },
   modules: {},
 };

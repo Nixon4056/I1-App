@@ -46,6 +46,18 @@ export default {
     employee: {
       type: Object,
       require: true,
+      default (){
+        return{
+          admin: 'false',
+          color: 'grey',
+          email: 'unknown',
+          id: 0,
+          initials: '404',
+          kanbans: ['dashboard'],
+          name: 'Unknown Name',
+          standing: 'not assigned'
+        }
+      }
     },
     id: {
       type: Number,
@@ -54,7 +66,7 @@ export default {
   },
   computed: {
     taskDetailsLink() {
-      return this.$route.path + '/task_' + this.id; //Task Details with ID
+      return this.$route.path + '/task/' + this.id; //Task Details with ID
     },
   },
 };

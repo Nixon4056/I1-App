@@ -70,7 +70,13 @@
 
 <script>
 export default {
-  props: ['id'],
+  props: {
+    id: {
+      type: String,
+      required: true,
+      default: '',
+    }
+  },
   data() {
     return {
       newDescription: '',
@@ -88,15 +94,20 @@ export default {
     },
 
     changeDescription() {
-      this.$store.commit('tasks/changeDescription', {
+      this.$store.dispatch('tasks/changeDescription', {
         id: this.selectedTask.id,
-        newDescription: !this.newDescription ? 'Dodaj opis...' : this.newDescription,
+        description: !this.newDescription
+          ? 'Dodaj opis...'
+          : this.newDescription,
       });
       this.editDescription = false;
     },
     back() {
       this.$router.back();
       this.DescriptionEditorHandler(false);
+    },
+    loadTasks() {
+      this.$store.dispatch('tasks/loadTasks');
     },
   },
   computed: {
@@ -113,17 +124,17 @@ export default {
         logs: this.selectedTask.logs,
       };
     },
-    status(){
-          if(this.task.status == 1){
-            return 'Przyjęto'
-          }else if(this.task.status == 2){
-            return 'W realizacji'
-          }else if(this.task.status == 3){
-            return 'zrealizowano'
-          }else{
-            return 'Odłożono'
-          }
-        },
+    status() {
+      if (this.task.status == 1) {
+        return 'Przyjęto';
+      } else if (this.task.status == 2) {
+        return 'W realizacji';
+      } else if (this.task.status == 3) {
+        return 'zrealizowano';
+      } else {
+        return 'Odłożono';
+      }
+    },
   },
   created() {
     this.selectedTask = this.$store.getters['tasks/tasks'].find(
@@ -146,7 +157,7 @@ export default {
 .description {
   margin: 1rem 0;
 }
-.inner1Section{
+.inner1Section {
   margin: 1rem 0;
 }
 .inner1Section h1 {

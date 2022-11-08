@@ -106,6 +106,14 @@ export default {
               employee: this.getChoiceUser.id,
               text: `${this.getChoiceUser.name} utworzył(a) zlecenie`,
             }
+          ],
+          comments: [
+            {
+              id: null,
+              text: '',
+              employee: null,
+              date: ''
+            },
           ]
         };
         this.$store.dispatch('tasks/addTask', task);
