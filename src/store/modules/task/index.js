@@ -26,7 +26,10 @@ export default {
         payload.description;
     },
     addComment(state, payload) {
-      state.tasks.find((task) => task.id === payload.id).comments.push(payload.comment);
+      [state.tasks.find((task) => task.id === payload.taskId).comments].push(payload)
+    },
+    addLog(state, payload) {
+      [state.tasks.find((task) => task.id === payload.taskId).logs].push(payload);
     },
   },
   actions: actions,

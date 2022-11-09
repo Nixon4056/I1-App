@@ -105,6 +105,7 @@ export default {
               id: Date.now(),
               employee: this.getChoiceUser.id,
               text: `${this.getChoiceUser.name} utworzył(a) zlecenie`,
+              date: Date.now(),
             }
           ],
           comments: [
@@ -112,7 +113,7 @@ export default {
               id: null,
               text: '',
               employee: null,
-              date: ''
+              date: Date.now(),
             },
           ]
         };

@@ -4,7 +4,7 @@
       @mouseenter="showModal"
       @mouseleave="hideModal"
       class="plate"
-      :class="{ plateHover: basic }"
+      :class="{ plateHover: modal }"
     >
       <div :style="{ backgroundColor: filteredEmployee(employee).color }" class="initials">
         {{ filteredEmployee(employee).initials }}
@@ -22,14 +22,14 @@
         <save-buttons @save="addComment"></save-buttons>
       </div>
       <div v-if="!basic" class="prop">
-        <h3>{{ prop }}</h3>
+        <h3>{{ timeHandler(date) }}</h3>
       </div>
     </div>
     <transition name="modal">
       <user-modal
         @mouseenter="modalEntered = true"
         @mouseleave="hideModal"
-        v-if="modalIsVisible && basic"
+        v-if="modalIsVisible && modal"
         :user="filteredEmployee(employee)"
       ></user-modal>
     </transition>
@@ -46,12 +46,17 @@ export default {
     },
     employee: {
       type: Number,
+      default: 1667936042712
     },
-    prop: {
-      type: String,
-      default: '',
+    date: {
+      type: Number,
+      default: 0,
     },
     basic: {
+      type: Boolean,
+      default: false,
+    },
+    modal: {
       type: Boolean,
       default: false,
     },
@@ -74,15 +79,14 @@ export default {
       return this.users.find((user) => user.id === id)
     },
     addComment() {
-      this.$store.dispatch('tasks/addComment', {
-        id: this.taskID,
-        comment: {
-          id: Date.now(),
-          employee: this.employee,
-          text: this.commentContent,
-          date: '5 Lis',
-        },
-      });
+      const comment = {
+        taskId: this.taskID,
+        id: Date.now(),
+        employee: this.employee,
+        text: this.commentContent,
+        date: Date.now(),
+      }
+      this.$store.dispatch('tasks/addComment', comment);
       this.commentContent = '';
     },
     showModal() {
@@ -96,6 +100,16 @@ export default {
         this.modalEntered = false;
       }, 300);
     },
+    timeHandler(time){
+      const now = Date.now();
+      const minutes = 'Dodano ' + Math.round((now - time)/60000) + ' minut(y) temu';
+      const hours = 'Dodano ' + Math.round((now - (minutes / 60))/60000) + ' minut(y) temu';
+      if(minutes < 1){
+        return 'Dodano mniej niż minutę temu';
+      }else{
+        return minutes >= 60 ? hours : minutes;
+      } 
+    }
   },
   created() {
     this.users = this.$store.getters['users/getUsers'];

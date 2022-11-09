@@ -46,13 +46,13 @@ export default {
     };
   },
   methods: {
-    loadUsersAndTasks(){
+    loadUsersAndTasks() {
       this.$store.dispatch('users/loadUsers');
       this.$store.dispatch('tasks/loadTasks');
     },
-    filteredEmployee(id){
+    filteredEmployee(id) {
       const users = this.$store.getters['users/getUsers'];
-      return users.find((user) => user.id === id)
+      return users.find((user) => user.id === id);
     },
     filteredTasks(status) {
       const tasks = this.$store.getters['tasks/tasks']; //LOAD TASKS
@@ -76,22 +76,35 @@ export default {
       event.dataTransfer.dropEffect = 'move';
       event.dataTransfer.effectAllowed = 'move';
       event.dataTransfer.setData('itemId', item.id);
+      event.dataTransfer.setData('itemStatus', item.status);
     },
     onDrop(event, status) {
       const itemId = parseInt(event.dataTransfer.getData('itemId'));
+      const itemStatusBefore = parseInt(
+        event.dataTransfer.getData('itemStatus')
+      );
+
       const tasks = this.$store.getters['tasks/tasks'];
       const item = tasks.find((task) => task.id === itemId);
       item.status = status;
-      this.$store.dispatch('tasks/changeStatus', {
+      const data = {
         id: itemId,
-        status: status
-      })
+        status: status,
+      };
+      this.$store.dispatch('tasks/changeStatus', data);
+
+      const logData = {
+        taskId: itemId,
+        id: Date.now(),
+        employee: item.employee,
+        text: `${this.filteredEmployee(item.employee).name} zmienił status z ${itemStatusBefore} na ${status}`,
+        date: Date.now(),
+      };
+      this.$store.dispatch('tasks/addLog', logData);
     },
   },
   created() {
     this.loadUsersAndTasks();
-    /* this.loadUsers(); //FIREBASE FETCH users always first!
-    this.loadTasks(); //FIREBASE FETCH tasks */
     this.columns = this.$store.getters['columns/columns'];
   },
 };

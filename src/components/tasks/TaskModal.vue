@@ -49,11 +49,11 @@
       <div class="details">
         <div class="row responsible">
           <h1>Osoba przypisana</h1>
-          <user-plate basic :employee="task.employee"></user-plate>
+          <user-plate basic modal :employee="task.employee"></user-plate>
         </div>
         <div class="row user">
           <h1>Osoba zgłaszająca</h1>
-          <user-plate basic :employee="task.employee"></user-plate>
+          <user-plate basic modal :employee="task.employee"></user-plate>
         </div>
         <div class="row date">
           <h1>Termin</h1>
@@ -105,9 +105,6 @@ export default {
     back() {
       this.$router.back();
       this.DescriptionEditorHandler(false);
-    },
-    loadTasks() {
-      this.$store.dispatch('tasks/loadTasks');
     },
   },
   computed: {
